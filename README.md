@@ -19,3 +19,4 @@
 
 ## 업데이트 내용
 - 2022.03.07(월) : 프로젝트 구성 및 Spirng Initializr 생성
+- 2022.03.08(화) : Member, Board Entity 생성 및 설정
