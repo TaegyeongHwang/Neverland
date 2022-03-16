@@ -40,9 +40,11 @@ public class MemberService {
 
     // 회원가입
     @Transactional
-    public void joinProc(Member member) {
+    public String joinProc(Member member) {
 
         memberRepository.memberJoin(member);
+
+        return member.getId();
     }
 
     /**
