@@ -43,20 +43,4 @@ public class MemberService {
         memberRepository.memberJoin(member);
     }
 
-
-
-    /**
-     * 로그인
-     */
-    public void loginProc(LoginForm form) {
-
-        Member member = memberRepository.findMember(form);
-
-        session.setAttribute("member", member);
-    }
-
-    public Member memberInfo() {
-
-        return (Member)session.getAttribute("member");
-    }
 }

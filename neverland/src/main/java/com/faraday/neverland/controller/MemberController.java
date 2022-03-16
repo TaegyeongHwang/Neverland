@@ -34,6 +34,7 @@ public class MemberController {
         return "member/memberJoin";
     }
 
+    // 아이디 중복확인
     @GetMapping(value = "/checkId", produces = "application/text; charset=utf-8")
     @ResponseBody
     public String checkId(String id) {
@@ -50,6 +51,7 @@ public class MemberController {
         log.info("joinProc()");
 
         if (result.hasErrors()) {
+
             return "member/memberJoin";
         }
 
@@ -69,7 +71,6 @@ public class MemberController {
     // 로그인 페이지
     @GetMapping("/member/login")
     public String loginPage(Model model) {
-        log.info("loginPage()");
         model.addAttribute("loginForm", new LoginForm());
 
         return "member/memberLogin";
@@ -84,20 +85,8 @@ public class MemberController {
             return "member/memberLogin";
         }
 
-        memberService.loginProc(form);
-
         return "redirect:/";
+
     }
 
-    /**
-     * 회원정보
-     */
-    // 회원정보 페이지
-    @GetMapping("/member/info")
-    public String infoPage(Model model) {
-        Member member = memberService.memberInfo();
-        model.addAttribute("member", member);
-
-        return "member/memberInfo";
-    }
 }
