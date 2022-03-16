@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 
@@ -22,6 +22,10 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    /**
+     * 회원가입
+     */
+    // 회원가입 페이지
     @GetMapping("/member/join")
     public String joinPage(Model model) {
         log.info("joinPage()");
@@ -30,6 +34,17 @@ public class MemberController {
         return "member/memberJoin";
     }
 
+    @GetMapping(value = "/checkId", produces = "application/text; charset=utf-8")
+    @ResponseBody
+    public String checkId(String id) {
+        log.info("checkId()");
+
+        String result = memberService.checkId(id);
+
+        return result;
+    }
+
+    // 회원가입
     @PostMapping("/member/join")
     public String joinProc(@Valid MemberForm form, BindingResult result) {
         log.info("joinProc()");
@@ -48,6 +63,10 @@ public class MemberController {
         return "redirect:/";
     }
 
+    /**
+     * 로그인
+     */
+    // 로그인 페이지
     @GetMapping("/member/login")
     public String loginPage(Model model) {
         log.info("loginPage()");
@@ -56,18 +75,29 @@ public class MemberController {
         return "member/memberLogin";
     }
 
+    // 로그인
     @PostMapping("/member/login")
-    public String loginProc(@Valid LoginForm form, BindingResult result, RedirectAttributes rttr) {
+    public String loginProc(@Valid LoginForm form, BindingResult result) {
         log.info("loginProc()");
-
-        String view = null;
 
         if (result.hasErrors()) {
             return "member/memberLogin";
         }
 
-        view = memberService.loginProc(form, rttr);
+        memberService.loginProc(form);
 
-        return view;
+        return "redirect:/";
+    }
+
+    /**
+     * 회원정보
+     */
+    // 회원정보 페이지
+    @GetMapping("/member/info")
+    public String infoPage(Model model) {
+        Member member = memberService.memberInfo();
+        model.addAttribute("member", member);
+
+        return "member/memberInfo";
     }
 }

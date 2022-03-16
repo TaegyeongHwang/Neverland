@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header" />
+<head th:replace="fragments/header :: header"/>
 <style>
     .fieldError {
         border-color: #bd2130;
@@ -17,6 +17,8 @@
             <input type="text" th:field="*{id}" class="form-control" placeholder="아이디를 입력하세요"
                    th:class="${#fields.hasErrors('id')} ? 'form-control fieldError' : 'form-control'">
             <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Incorrect date</p>
+            <br/>
+            <input type="button" class="btn btn-primary" th:value="중복확인" th:onclick="checkId()">
         </div>
 
         <div class="form-group">
@@ -37,8 +39,39 @@
     </form>
     <br/>
 
-    <div th:replace="fragments/footer :: footer" />
+    <div th:replace="fragments/footer :: footer"/>
 </div>
 
 </body>
+<script th:inline="javascript">
+    function checkId() {
+        var getId = $("#id").val();
+
+        if (getId == "") {
+            alert("아이디를 입력하세요!");
+
+            return;
+        }
+
+        var sendId = {"id":getId}
+
+        $.ajax({
+            url: "/checkId",
+            type: "get",
+            data: sendId,
+            success: function (result) {
+                if(result == "true") {
+                    alert("아이디 사용가능!");
+                }
+                else {
+                    alert("아이디 사용불가능!");
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+</script>
 </html>
