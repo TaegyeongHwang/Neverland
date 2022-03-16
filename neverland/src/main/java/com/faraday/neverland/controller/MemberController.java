@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -78,14 +79,18 @@ public class MemberController {
 
     // 로그인
     @PostMapping("/member/login")
-    public String loginProc(@Valid LoginForm form, BindingResult result) {
+    public String loginProc(@Valid LoginForm form, BindingResult result, RedirectAttributes rttr) {
         log.info("loginProc()");
+
+        String view = null;
 
         if (result.hasErrors()) {
             return "member/memberLogin";
         }
 
-        return "redirect:/";
+        view = memberService.loginProc(form, rttr);
+
+        return view;
 
     }
 

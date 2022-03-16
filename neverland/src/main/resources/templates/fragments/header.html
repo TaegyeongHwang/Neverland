@@ -20,4 +20,15 @@
     <!-- Custom styles for this template -->
     <link href="/css/jumbotron-narrow.css" rel="stylesheet">
     <title>Neverland</title>
+
+    <script th:inline="javascript">
+
+        var message = [[${alert}]];
+
+        if(message != null) {
+            alert(message);
+            console.log(message);
+        }
+
+    </script>
 </head>
