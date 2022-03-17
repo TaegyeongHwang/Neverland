@@ -11,24 +11,21 @@
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
+    <form role="form" action="/board/write" th:object="${writeForm}" method="post">
+
         <div class="form-group">
             <label th:for="id">아이디</label>
-            <p th:text="${member.id}">ID</p>
+            <p th:text="${session.member.id}" th:field="${session.member.id}"></p>
         </div>
 
-    <form role="form" action="/board/write" th:object="${writeForm}" method="post">
         <div class="form-group">
             <label th:for="title">제목</label>
-            <input type="password" th:field="*{title}" class="form-control" placeholder="제목을 입력하세요"
-                   th:class="${#fields.hasErrors('title')} ? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Incorrect date</p>
+            <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력하세요">
         </div>
 
         <div class="form-group">
             <label th:for="contents">내용</label>
-            <input type="text" th:field="*{contents}" class="form-control" placeholder="내용을 입력하세요"
-                   th:class="${#fields.hasErrors('contents')} ? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}">Incorrect date</p>
+            <input type="text" th:field="*{contents}" class="form-control" placeholder="내용을 입력하세요">
         </div>
 
         <button type="submit" class="btn btn-primary">글쓰기</button>

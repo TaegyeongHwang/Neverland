@@ -21,6 +21,9 @@ public class Member {
     @Column(length = 50, nullable = false)
     private String name;
 
+    @Column(length = 250, nullable = false)
+    private String email;
+
     @OneToMany(mappedBy = "member")
     private List<Board> board = new ArrayList<>();
 }

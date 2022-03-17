@@ -60,6 +60,7 @@ public class MemberController {
         member.setId(form.getId());
         member.setPw(form.getPw());
         member.setName(form.getName());
+        member.setEmail(form.getEmail());
 
         memberService.joinProc(member);
 
@@ -92,6 +93,16 @@ public class MemberController {
 
         return view;
 
+    }
+
+    /**
+     * 회원정보
+     */
+    // 회원정보 페이지
+    @GetMapping("/member/info")
+    public String infoPage() {
+
+        return "member/memberInfo";
     }
 
 }
