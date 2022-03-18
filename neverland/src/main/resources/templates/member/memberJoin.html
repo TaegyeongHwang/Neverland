@@ -9,6 +9,7 @@
 <body>
 
 <div class="container">
+
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
     <form role="form" action="/member/join" th:object="${memberForm}" method="post">
@@ -48,6 +49,7 @@
     <br/>
 
     <div th:replace="fragments/footer :: footer"/>
+
 </div>
 
 </body>

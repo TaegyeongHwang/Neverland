@@ -42,7 +42,7 @@ public class MemberService {
     @Transactional
     public String joinProc(Member member) {
 
-        memberRepository.memberJoin(member);
+        memberRepository.joinMember(member);
 
         return member.getId();
     }
@@ -60,6 +60,7 @@ public class MemberService {
         if (member != null) {
             if (member.getPw().equals(form.getPw())) {
                 session.setAttribute("member", member);
+                session.setAttribute("id", member.getId());
                 view = "redirect:/";
             }
             else {

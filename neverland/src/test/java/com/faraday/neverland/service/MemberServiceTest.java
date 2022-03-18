@@ -20,7 +20,7 @@ public class MemberServiceTest {
     @Test
     public void 회원가입() throws Exception {
         // given
-        Member member = new Member();
+        Member member= new Member();
         member.setId("TestId");
         member.setPw("1234");
         member.setName("TestName");
