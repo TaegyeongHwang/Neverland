@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -22,7 +23,7 @@ public class BoardService {
     private final HttpSession session;
 
     /**
-     * 글쓰기
+     * 게시판
      */
     // 글쓰기
     @Transactional
@@ -39,6 +40,11 @@ public class BoardService {
         boardRepository.writeBoard(board);
 
         return board.getNo();
+    }
+
+    public List<Board> boardList() {
+
+        return boardRepository.listBoard();
     }
 
 }

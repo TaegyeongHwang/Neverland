@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+
+<div class="container">
+
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>작성자</th>
+                <th>제목</th>
+                <th>내용</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bList : ${boardList}">
+                <td th:text="${bList.getNo()}"></td>
+                <td th:text="${bList.getMember().getId()}"></td>
+                <td th:text="${bList.getTitle()}"></td>
+                <td th:text="${bList.getContents()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    </br>
+    <div>
+        <a class="btn btn-primary" href="/board/write">글쓰기</a>
+    </div>
+    </br>
+
+    <div th:replace="fragments/footer :: footer"/>
+
+</div>
+
+</body>
+</html>

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -15,6 +16,11 @@ public class BoardRepository {
     public void writeBoard(Board board) {
 
         em.persist(board);
+    }
+
+    public List<Board> listBoard() {
+
+        return em.createQuery("select b from Board b", Board.class).getResultList();
     }
 
 }
