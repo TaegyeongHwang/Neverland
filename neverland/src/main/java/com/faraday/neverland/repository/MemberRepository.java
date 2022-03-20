@@ -17,7 +17,7 @@ public class MemberRepository {
         return em.find(Member.class, id);
     }
 
-    public void joinMember(Member member) {
+    public void persistMember(Member member) {
 
         em.persist(member);
     }

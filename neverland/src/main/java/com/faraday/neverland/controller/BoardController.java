@@ -35,6 +35,9 @@ public class BoardController {
         return "board/boardList";
     }
 
+    /**
+     * 글쓰기
+     */
     // 글쓰기 페이지
     @GetMapping("/board/write")
     public String writePage(Model model) {
@@ -57,13 +60,16 @@ public class BoardController {
         return "board/boardList";
     }
 
-    // 상세내용
+    /**
+     * 상세내용
+     */
+    // 상세내용 페이기
     @GetMapping("/board/contents")
     public String contentsPage(Long no, Model model) {
         log.info("contentsPage()" + no);
 
-        Board contents = boardService.contentsList(no);
-        model.addAttribute("contents", contents);
+        Board board = boardService.contentsPage(no);
+        model.addAttribute("board", board);
 
         return "/board/boardContents";
     }
@@ -73,8 +79,8 @@ public class BoardController {
     public String updatePage(Long no, Model model) {
         log.info("updatePage()" + no);
 
-        Board update = boardService.contentsList(no);
-        model.addAttribute("update", update);
+        Board boardUpdate = boardService.updatePage(no);
+        model.addAttribute("boardUpdate", boardUpdate);
 
         return "/board/boardUpdate";
     }
@@ -82,6 +88,7 @@ public class BoardController {
     // 수정하기
     @PostMapping("/board/update")
     public String updateWrite(Long no, @ModelAttribute("update") WriteForm form, Model model) {
+        log.info("updateWrite" + no);
 
         boardService.updateWrite(no, form.getTitle(), form.getContents());
 
@@ -89,6 +96,19 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
 
         return "board/boardList";
+    }
+
+    // 삭제하기
+    @GetMapping("/board/delete")
+    public String deleteProc(Long no, Model model) {
+        log.info("deleteProc()" + no);
+
+        boardService.deleteProc(no);
+
+        List<Board> boardList = boardService.boardList();
+        model.addAttribute("boardList", boardList);
+
+        return "/board/boardList";
     }
 
 }

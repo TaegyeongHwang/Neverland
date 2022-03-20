@@ -13,19 +13,24 @@ public class BoardRepository {
 
     private final EntityManager em;
 
-    public void writeBoard(Board board) {
+    public void persistBoard(Board board) {
 
         em.persist(board);
     }
 
-    public List<Board> listBoard() {
+    public List<Board> findBoardList() {
 
         return em.createQuery("select b from Board b", Board.class).getResultList();
     }
 
-    public Board findConents(Long pageNo) {
+    public Board findBoard(Long pageNo) {
 
         return em.find(Board.class, pageNo);
+    }
+
+    public void removeBoard(Board board) {
+
+        em.remove(board);
     }
 
 }

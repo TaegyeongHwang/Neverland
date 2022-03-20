@@ -9,27 +9,28 @@
 
     <div class="form-group">
         <label th:for="id">작성자</label>
-        <p th:text="${contents.getMember().getId()}"></p>
+        <p th:text="${board.getMember().getId()}"></p>
     </div>
 
     <div class="form-group">
         <label th:for="title">제목</label>
-        <p th:text="${contents.getTitle()}"></p>
+        <p th:text="${board.getTitle()}"></p>
     </div>
 
     <div class="form-group">
         <label th:for="contents">내용</label>
-        <p th:text="${contents.getContents()}"></p>
+        <p th:text="${board.getContents()}"></p>
     </div>
 
     <div class="form-group">
         <label th:for="writeDate">작성시간</label>
-        <p th:text="${contents.getWriteDate()}"></p>
+        <p th:text="${board.getWriteDate()}"></p>
     </div>
 
     </br>
     <div>
-        <a class="btn btn-primary" th:href="'/board/update?no='+${contents.getNo()}">수정하기</a>
+        <a class="btn btn-primary" th:href="'/board/update?no='+${board.getNo()}">수정하기</a>
+        <a class="btn btn-primary" th:href="'/board/delete?no='+${board.getNo()}">삭제하기</a>
     </div>
     </br>
 

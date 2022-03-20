@@ -23,7 +23,7 @@ public class MemberService {
      * 회원가입
      */
     // 아이디 중복확인
-    public String checkId(String id) {
+    public String checkOverlapId(String id) {
 
         String result = null;
 
@@ -42,7 +42,7 @@ public class MemberService {
     @Transactional
     public String joinProc(Member member) {
 
-        memberRepository.joinMember(member);
+        memberRepository.persistMember(member);
 
         return member.getId();
     }
@@ -75,6 +75,19 @@ public class MemberService {
         rttr.addFlashAttribute("alert", alert);
 
         return view;
+    }
+
+    /**
+     * 회원정보
+     */
+    // 회원정보 페이지
+    public Member infoPage() {
+
+        String id = (String) session.getAttribute("id");
+
+        Member member = memberRepository.findMember(id);
+
+        return member;
     }
 
 }

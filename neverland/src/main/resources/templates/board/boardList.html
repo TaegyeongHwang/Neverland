@@ -22,8 +22,7 @@
                 <td th:text="${bList.getNo()}"></td>
                 <td th:text="${bList.getMember().getId()}"></td>
                 <td th:text="${bList.getTitle()}"></td>
-                <td th:text="${bList.getContents()}"
-                    th:onclick="|location.href='@{/board/contents(no=${bList.getNo()})}'|"></td>
+                <td><a th:text="${bList.getContents()}" th:href="'/board/contents?no='+${bList.getNo()}"></a></td>
             </tr>
             </tbody>
         </table>

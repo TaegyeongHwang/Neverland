@@ -25,6 +25,15 @@ public class BoardService {
     /**
      * 게시판
      */
+    // 게시판 페이지
+    public List<Board> boardList() {
+
+        return boardRepository.findBoardList();
+    }
+
+    /**
+     * 글쓰기
+     */
     // 글쓰기
     @Transactional
     public Long writeProc(String title, String contents) {
@@ -39,27 +48,43 @@ public class BoardService {
         board.setContents(contents);
         board.setWriteDate(LocalDateTime.now());
 
-        boardRepository.writeBoard(board);
+        boardRepository.persistBoard(board);
 
         return board.getNo();
     }
 
-    public List<Board> boardList() {
+    /**
+     * 상세내용
+     */
+    // 상세내용 페이지
+    public Board contentsPage(Long pageNo) {
 
-        return boardRepository.listBoard();
+        return boardRepository.findBoard(pageNo);
     }
 
-    public Board contentsList(Long pageNo) {
+    // 수정하기 페이지
+    public Board updatePage(Long pageNo) {
 
-        return boardRepository.findConents(pageNo);
+        return boardRepository.findBoard(pageNo);
     }
 
+    // 수정하기
     @Transactional
     public void updateWrite(Long no, String title, String contents) {
 
-        Board board = boardRepository.findConents(no);
+        Board board = boardRepository.findBoard(no);
         board.setTitle(title);
         board.setContents(contents);
+        board.setWriteDate(LocalDateTime.now());
+    }
+
+    // 삭제하기
+    @Transactional
+    public void deleteProc(Long no) {
+
+        Board board = boardRepository.findBoard(no);
+
+        boardRepository.removeBoard(board);
     }
 
 }

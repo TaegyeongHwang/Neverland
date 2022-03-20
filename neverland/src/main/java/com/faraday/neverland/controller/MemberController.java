@@ -38,10 +38,10 @@ public class MemberController {
     // 아이디 중복확인
     @GetMapping(value = "/checkId", produces = "application/text; charset=utf-8")
     @ResponseBody
-    public String checkId(String id) {
-        log.info("checkId()");
+    public String checkOverlapId(String id) {
+        log.info("checkOverlapId()");
 
-        String result = memberService.checkId(id);
+        String result = memberService.checkOverlapId(id);
 
         return result;
     }
@@ -100,7 +100,11 @@ public class MemberController {
      */
     // 회원정보 페이지
     @GetMapping("/member/info")
-    public String infoPage() {
+    public String infoPage(Model model) {
+        log.info("infoPage()");
+
+        Member member = memberService.infoPage();
+        model.addAttribute("member", member);
 
         return "member/memberInfo";
     }
