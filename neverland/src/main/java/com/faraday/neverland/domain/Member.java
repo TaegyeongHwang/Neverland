@@ -1,5 +1,6 @@
 package com.faraday.neverland.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +25,7 @@ public class Member {
     @Column(length = 250, nullable = false)
     private String email;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Board> board = new ArrayList<>();
 }

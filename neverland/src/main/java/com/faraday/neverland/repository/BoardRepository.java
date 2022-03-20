@@ -23,4 +23,9 @@ public class BoardRepository {
         return em.createQuery("select b from Board b", Board.class).getResultList();
     }
 
+    public Board findConents(Long pageNo) {
+
+        return em.find(Board.class, pageNo);
+    }
+
 }

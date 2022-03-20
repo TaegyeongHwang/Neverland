@@ -29,7 +29,9 @@ public class BoardService {
     @Transactional
     public Long writeProc(String title, String contents) {
 
-        Member member = (Member) session.getAttribute("member");
+        String id = (String)session.getAttribute("id");
+
+        Member member = memberRepository.findMember(id);
 
         Board board = new Board();
         board.setMember(member);
@@ -45,6 +47,19 @@ public class BoardService {
     public List<Board> boardList() {
 
         return boardRepository.listBoard();
+    }
+
+    public Board contentsList(Long pageNo) {
+
+        return boardRepository.findConents(pageNo);
+    }
+
+    @Transactional
+    public void updateWrite(Long no, String title, String contents) {
+
+        Board board = boardRepository.findConents(no);
+        board.setTitle(title);
+        board.setContents(contents);
     }
 
 }

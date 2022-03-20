@@ -14,7 +14,7 @@ public class Board {
     @Column(name = "board_no")
     private Long no;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -24,4 +24,10 @@ public class Board {
     private String contents;
 
     private LocalDateTime writeDate;
+
+    public void setMember(Member member) {
+        this.member = member;
+        member.getBoard().add(this);
+    }
+
 }

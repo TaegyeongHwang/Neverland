@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -23,7 +24,6 @@ public class BoardController {
     /**
      * 게시판
      */
-
     // 게시판 페이지
     @GetMapping("/board")
     public String boardPage(Model model) {
@@ -51,6 +51,40 @@ public class BoardController {
         log.info("writeProc()");
 
         boardService.writeProc(form.getTitle(), form.getContents());
+        List<Board> boardList = boardService.boardList();
+        model.addAttribute("boardList", boardList);
+
+        return "board/boardList";
+    }
+
+    // 상세내용
+    @GetMapping("/board/contents")
+    public String contentsPage(Long no, Model model) {
+        log.info("contentsPage()" + no);
+
+        Board contents = boardService.contentsList(no);
+        model.addAttribute("contents", contents);
+
+        return "/board/boardContents";
+    }
+
+    // 수정하기 페이지
+    @GetMapping("/board/update")
+    public String updatePage(Long no, Model model) {
+        log.info("updatePage()" + no);
+
+        Board update = boardService.contentsList(no);
+        model.addAttribute("update", update);
+
+        return "/board/boardUpdate";
+    }
+
+    // 수정하기
+    @PostMapping("/board/update")
+    public String updateWrite(Long no, @ModelAttribute("update") WriteForm form, Model model) {
+
+        boardService.updateWrite(no, form.getTitle(), form.getContents());
+
         List<Board> boardList = boardService.boardList();
         model.addAttribute("boardList", boardList);
 
