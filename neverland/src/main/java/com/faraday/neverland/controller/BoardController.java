@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,14 +51,17 @@ public class BoardController {
 
     // 글쓰기
     @PostMapping("/board/write")
-    public String writeProc(@Valid WriteForm form, Model model) {
+    public String writeProc(@Valid WriteForm form, BindingResult result, Model model) {
         log.info("writeProc()");
 
-        boardService.writeProc(form.getTitle(), form.getContents());
-        List<Board> boardList = boardService.boardList();
-        model.addAttribute("boardList", boardList);
+        if (result.hasErrors()) {
 
-        return "board/boardList";
+            return "board/boardWrite";
+        }
+
+        boardService.writeProc(form.getTitle(), form.getContents());
+
+        return "redirect:/";
     }
 
     /**
@@ -92,10 +96,7 @@ public class BoardController {
 
         boardService.updateWrite(no, form.getTitle(), form.getContents());
 
-        List<Board> boardList = boardService.boardList();
-        model.addAttribute("boardList", boardList);
-
-        return "board/boardList";
+        return "redirect:/";
     }
 
     // 삭제하기
@@ -105,10 +106,7 @@ public class BoardController {
 
         boardService.deleteProc(no);
 
-        List<Board> boardList = boardService.boardList();
-        model.addAttribute("boardList", boardList);
-
-        return "/board/boardList";
+        return "redirect:/";
     }
 
 }

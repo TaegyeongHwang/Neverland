@@ -14,15 +14,15 @@
                 <th>번호</th>
                 <th>작성자</th>
                 <th>제목</th>
-                <th>내용</th>
+                <th>작성시간</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="bList : ${boardList}">
                 <td th:text="${bList.getNo()}"></td>
                 <td th:text="${bList.getMember().getId()}"></td>
-                <td th:text="${bList.getTitle()}"></td>
-                <td><a th:text="${bList.getContents()}" th:href="'/board/contents?no='+${bList.getNo()}"></a></td>
+                <td><a th:text="${bList.getTitle()}" th:href="'/board/contents?no='+${bList.getNo()}"></a></td>
+                <td th:text="${bList.getWriteDate()}"></td>
             </tr>
             </tbody>
         </table>

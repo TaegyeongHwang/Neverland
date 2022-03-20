@@ -25,6 +25,7 @@ public class Board {
 
     private LocalDateTime writeDate;
 
+    // 연관관계 메소드
     public void setMember(Member member) {
         this.member = member;
         member.getBoard().add(this);

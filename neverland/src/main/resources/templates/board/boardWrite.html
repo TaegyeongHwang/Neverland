@@ -1,6 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header" />
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+</style>
 <body>
 
 <div class="container">
@@ -16,12 +21,16 @@
 
         <div class="form-group">
             <label th:for="title">제목</label>
-            <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력하세요">
+            <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력하세요"
+                   th:class="${#fields.hasErrors('title')} ? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Incorrect date</p>
         </div>
 
         <div class="form-group">
             <label th:for="contents">내용</label>
-            <input type="text" th:field="*{contents}" class="form-control" placeholder="내용을 입력하세요">
+            <input type="text" th:field="*{contents}" class="form-control" placeholder="내용을 입력하세요"
+                   th:class="${#fields.hasErrors('contents')} ? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}">Incorrect date</p>
         </div>
 
         <button type="submit" class="btn btn-primary">글쓰기</button>
