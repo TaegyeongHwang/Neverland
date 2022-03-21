@@ -1,17 +1,19 @@
 package com.faraday.neverland.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
-public class Board {
+public class Course {
 
     @Id @GeneratedValue
-    @Column(name = "board_no")
+    @Column(name = "course_no")
     private Long no;
 
     @Column(length = 100, nullable = false)
@@ -19,16 +21,11 @@ public class Board {
 
     private String contents;
 
-    private LocalDateTime writeDate;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    // 연관관계 메소드
-    public void setMember(Member member) {
-        this.member = member;
-        member.getBoard().add(this);
-    }
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<CourseWay> courseWay = new ArrayList<>();
 }

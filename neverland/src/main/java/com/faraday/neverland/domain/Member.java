@@ -28,4 +28,8 @@ public class Member {
     @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Board> board = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "member")
+    private List<Course> course = new ArrayList<>();
 }
