@@ -48,9 +48,6 @@ public class BoardController {
     public String writePage(Model model) {
         log.info("writePage()");
 
-        Member member = memberService.findMember();
-
-        model.addAttribute("member", member);
         model.addAttribute("writeForm", new WriteForm());
 
         return "board/boardWrite";
@@ -66,7 +63,7 @@ public class BoardController {
             return "board/boardWrite";
         }
 
-        boardService.writeProc(form.getId(), form.getTitle(), form.getContents());
+        boardService.writeProc(form.getTitle(), form.getContents());
 
         return "redirect:/";
     }

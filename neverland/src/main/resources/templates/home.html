@@ -8,7 +8,6 @@
 <body>
 
 <div class="container">
-
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
 
         <div class="jumbotron">
@@ -20,22 +19,24 @@
                 <a class="btn btn-lg btn-secondary" href="/member/logout" id="logout">로그아웃</a>
                 <a class="btn btn-lg btn-secondary" href="/member/info" id="info">회원정보</a>
             </p>
-            <p class="lead"><hr></p>
+            <hr>
+
+            <p class="lead">Neverland</p>
             <p>
                 <a class="btn btn-lg btn-dark" href="/board">게시판</a>
+                <a class="btn btn-lg btn-dark" href="/course/record">기록하기</a>
             </p>
-            <p class="lead">지도</p>
+            <hr>
+
+            <p class="lead">Admin</p>
             <p>
                 <a class="btn btn-lg btn-info" href="/departure/register">출발위치</a>
                 <a class="btn btn-lg btn-info" href="/arrival/register">도착위치</a>
-                <a class="btn btn-lg btn-info" href="/course/record">코스 기록하기</a>
             </p>
         </div>
 
     <div th:replace="fragments/footer :: footer" />
-
 </div>
 
 </body>
-
 </html>

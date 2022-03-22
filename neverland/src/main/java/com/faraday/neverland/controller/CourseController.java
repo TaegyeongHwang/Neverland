@@ -12,10 +12,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -40,6 +41,7 @@ public class CourseController {
         List<Departure> departureList = departureService.departureList();
         List<Arrival> arrivalList = arrivalService.arrivalList();
 
+        model.addAttribute("recordForm", new RecordForm());
         model.addAttribute("member", member);
         model.addAttribute("departureList", departureList);
         model.addAttribute("arrivalList", arrivalList);
@@ -49,11 +51,15 @@ public class CourseController {
 
     // 코스 등록하기
     @PostMapping("/course/record")
-    public String recordProc(@RequestParam("memberId") String id,
-                             @RequestParam("departNo") Long departNo,
-                             @RequestParam("arrivalNo") Long arrivalNo) {
+    public String recordProc(@Valid RecordForm form, BindingResult result) {
+        log.info("recordProc()");
 
-        courseService.courseRecord(id, departNo, arrivalNo);
+        if (result.hasErrors()) {
+
+            return "course/courseRecord";
+        }
+
+        courseService.courseRecord(form);
 
         return "redirect:/";
     }

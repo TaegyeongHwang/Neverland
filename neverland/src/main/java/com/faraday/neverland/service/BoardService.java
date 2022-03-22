@@ -36,7 +36,9 @@ public class BoardService {
      */
     // 글쓰기
     @Transactional
-    public Long writeProc(String id, String title, String contents) {
+    public Long writeProc(String title, String contents) {
+
+        String id = (String) session.getAttribute("id");
 
         Member member = memberRepository.findMember(id);
 

@@ -39,13 +39,13 @@ public class Course {
         courseSchedule.setCourse(this);
     }
 
-    public static Course createCourse(Member member, CourseSchedule courseSchedule) {
+    public static Course createCourse(Member member, CourseSchedule courseSchedule, String title, String contents) {
 
         Course course = new Course();
         course.setMember(member);
         course.addCourseSchedule(courseSchedule);
-        course.setTitle(member.getId() + "의 코스");
-        course.setContents(member.getId() + "와 떠나는 여행입니다!");
+        course.setTitle(member.getId() + "의 " + title);
+        course.setContents(member.getId() + "의 " + contents);
 
         return course;
     }
