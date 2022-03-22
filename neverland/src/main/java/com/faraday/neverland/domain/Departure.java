@@ -10,17 +10,17 @@ import javax.persistence.Id;
 
 @Entity
 @Getter @Setter
-public class StartWay {
+public class Departure {
 
     @Id
     @GeneratedValue
-    @Column(name = "startway_no")
+    @Column(name = "departure_no")
     private Long no;
 
     @Column(length = 100, nullable = false)
-    private String startName;
+    private String name;
 
     @Column(length = 255, nullable = false)
-    private double startLocation;
+    private double location;
 
 }

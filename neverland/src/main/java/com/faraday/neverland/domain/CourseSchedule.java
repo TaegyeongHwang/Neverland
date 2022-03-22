@@ -8,10 +8,10 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-public class CourseWay {
+public class CourseSchedule {
 
     @Id @GeneratedValue
-    @Column(name = "course_way_no")
+    @Column(name = "course_schedule_no")
     private Long no;
 
     @JsonIgnore
@@ -20,12 +20,12 @@ public class CourseWay {
     private Course course;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "startway_no")
-    private StartWay startWay;
+    @JoinColumn(name = "departure_no")
+    private Departure departure;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "endway_no")
-    private EndWay endWay;
+    @JoinColumn(name = "arrival_no")
+    private Arrival arrival;
 
 
 }

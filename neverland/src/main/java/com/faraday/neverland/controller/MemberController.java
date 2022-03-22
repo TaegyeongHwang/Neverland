@@ -1,7 +1,6 @@
 package com.faraday.neverland.controller;
 
 import com.faraday.neverland.domain.Member;
-import com.faraday.neverland.form.LoginForm;
 import com.faraday.neverland.form.MemberForm;
 import com.faraday.neverland.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -67,33 +65,6 @@ public class MemberController {
         return "redirect:/";
     }
 
-    /**
-     * 로그인
-     */
-    // 로그인 페이지
-    @GetMapping("/member/login")
-    public String loginPage(Model model) {
-        model.addAttribute("loginForm", new LoginForm());
-
-        return "member/memberLogin";
-    }
-
-    // 로그인
-    @PostMapping("/member/login")
-    public String loginProc(@Valid LoginForm form, BindingResult result, RedirectAttributes rttr) {
-        log.info("loginProc()");
-
-        String view = null;
-
-        if (result.hasErrors()) {
-            return "member/memberLogin";
-        }
-
-        view = memberService.loginProc(form, rttr);
-
-        return view;
-
-    }
 
     /**
      * 회원정보
