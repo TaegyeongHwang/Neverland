@@ -1,8 +1,10 @@
 package com.faraday.neverland.controller;
 
 import com.faraday.neverland.domain.Board;
+import com.faraday.neverland.domain.Member;
 import com.faraday.neverland.form.WriteForm;
 import com.faraday.neverland.service.BoardService;
+import com.faraday.neverland.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,6 +23,7 @@ import java.util.List;
 @Slf4j
 public class BoardController {
 
+    private final MemberService memberService;
     private final BoardService boardService;
 
     /**
@@ -44,6 +48,9 @@ public class BoardController {
     public String writePage(Model model) {
         log.info("writePage()");
 
+        Member member = memberService.findMember();
+
+        model.addAttribute("member", member);
         model.addAttribute("writeForm", new WriteForm());
 
         return "board/boardWrite";
@@ -59,7 +66,7 @@ public class BoardController {
             return "board/boardWrite";
         }
 
-        boardService.writeProc(form.getTitle(), form.getContents());
+        boardService.writeProc(form.getId(), form.getTitle(), form.getContents());
 
         return "redirect:/";
     }
@@ -92,7 +99,7 @@ public class BoardController {
     // 수정하기
     @PostMapping("/board/update")
     public String updateWrite(Long no, @ModelAttribute("update") WriteForm form, Model model) {
-        log.info("updateWrite" + no);
+        log.info("updateWrite()" + no);
 
         boardService.updateWrite(no, form.getTitle(), form.getContents());
 

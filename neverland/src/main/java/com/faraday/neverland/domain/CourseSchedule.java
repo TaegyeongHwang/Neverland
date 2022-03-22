@@ -27,5 +27,13 @@ public class CourseSchedule {
     @JoinColumn(name = "arrival_no")
     private Arrival arrival;
 
+    public static CourseSchedule createCourseSchedule(Departure departure, Arrival arrival) {
+
+        CourseSchedule courseSchedule = new CourseSchedule();
+        courseSchedule.setDeparture(departure);
+        courseSchedule.setArrival(arrival);
+
+        return courseSchedule;
+    }
 
 }

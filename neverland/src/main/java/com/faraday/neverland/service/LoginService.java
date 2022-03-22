@@ -2,7 +2,7 @@ package com.faraday.neverland.service;
 
 import com.faraday.neverland.domain.Member;
 import com.faraday.neverland.form.LoginForm;
-import com.faraday.neverland.repository.LoginRepository;
+import com.faraday.neverland.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class LoginService {
 
-    private final LoginRepository loginRepository;
+    private final MemberRepository memberRepository;
 
     private final HttpSession session;
 
@@ -27,7 +27,7 @@ public class LoginService {
         String view = null;
         String alert = null;
 
-        Member member = loginRepository.findMember(form.getId());
+        Member member = memberRepository.findMember(form.getId());
 
         if (member != null) {
             if (member.getPw().equals(form.getPw())) {

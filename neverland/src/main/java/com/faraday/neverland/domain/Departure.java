@@ -12,8 +12,7 @@ import javax.persistence.Id;
 @Getter @Setter
 public class Departure {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     @Column(name = "departure_no")
     private Long no;
 

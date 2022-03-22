@@ -48,6 +48,13 @@ public class MemberService {
     /**
      * 회원정보
      */
+    // 로그인 정보
+    public Member findMember() {
+
+        String id = (String) session.getAttribute("id");
+
+        return memberRepository.findMember(id);
+    }
     // 회원정보 페이지
     public Member infoPage() {
 
@@ -57,5 +64,7 @@ public class MemberService {
 
         return member;
     }
+
+
 
 }
