@@ -28,3 +28,4 @@
 - 2022.03.19(일) : 게시판 글 내용 수정, 삭제 기능 추가
 - 2022.03.20(월) : Course, CourseWay, StartWay, EndWay Entity 추가
 - 2022.03.21(화) : 출발, 도착위치, 코스 기록하기 기능 추가 로그인 기능 클래스 분리
+- 2022.03.22(수) : admin 계정 level값 부여, Member를 Account로 변경
