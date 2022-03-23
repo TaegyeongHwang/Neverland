@@ -10,10 +10,10 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-public class Member {
+public class Account {
 
     @Id
-    @Column(name = "member_id", length = 100)
+    @Column(name = "account_id", length = 100)
     private String id;
 
     @Column(length = 100, nullable = false)
@@ -29,10 +29,10 @@ public class Member {
     private int level = 0;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "account")
     private List<Board> board = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "account")
     private List<Course> course = new ArrayList<>();
 }

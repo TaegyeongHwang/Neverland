@@ -1,6 +1,6 @@
 package com.faraday.neverland.repository;
 
-import com.faraday.neverland.domain.Member;
+import com.faraday.neverland.domain.Account;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -8,18 +8,18 @@ import javax.persistence.EntityManager;
 
 @Repository
 @RequiredArgsConstructor
-public class MemberRepository {
+public class AccountRepository {
 
     private final EntityManager em;
 
-    public Member findMember(String id) {
+    public Account findAccount(String id) {
 
-        return em.find(Member.class, id);
+        return em.find(Account.class, id);
     }
 
-    public void persistMember(Member member) {
+    public void persistAccount(Account account) {
 
-        em.persist(member);
+        em.persist(account);
     }
 
 }

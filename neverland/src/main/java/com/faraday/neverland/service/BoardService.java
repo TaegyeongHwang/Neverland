@@ -1,9 +1,9 @@
 package com.faraday.neverland.service;
 
 import com.faraday.neverland.domain.Board;
-import com.faraday.neverland.domain.Member;
+import com.faraday.neverland.domain.Account;
 import com.faraday.neverland.repository.BoardRepository;
-import com.faraday.neverland.repository.MemberRepository;
+import com.faraday.neverland.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
 
-    private final MemberRepository memberRepository;
+    private final AccountRepository accountRepository;
     private final BoardRepository boardRepository;
 
     private final HttpSession session;
@@ -40,10 +40,10 @@ public class BoardService {
 
         String id = (String) session.getAttribute("id");
 
-        Member member = memberRepository.findMember(id);
+        Account account = accountRepository.findAccount(id);
 
         Board board = new Board();
-        board.setMember(member);
+        board.setMember(account);
         board.setTitle(title);
         board.setContents(contents);
         board.setWriteDate(LocalDateTime.now());

@@ -1,8 +1,8 @@
 package com.faraday.neverland.service;
 
-import com.faraday.neverland.domain.Member;
-import com.faraday.neverland.form.MemberForm;
-import com.faraday.neverland.repository.MemberRepository;
+import com.faraday.neverland.domain.Account;
+import com.faraday.neverland.form.AccountForm;
+import com.faraday.neverland.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class MemberService {
+public class AccountService {
 
-    private final MemberRepository memberRepository;
+    private final AccountRepository accountRepository;
 
     private final HttpSession session;
 
@@ -26,9 +26,9 @@ public class MemberService {
 
         String result = null;
 
-        Member getMember = memberRepository.findMember(id);
+        Account account = accountRepository.findAccount(id);
 
-        if(getMember == null) {
+        if(account == null) {
             result = "true";
         } else {
             result = "false";
@@ -39,46 +39,45 @@ public class MemberService {
 
     // 회원가입
     @Transactional
-    public String joinProc(MemberForm form) {
+    public String joinProc(AccountForm form) {
 
-        Member member = new Member();
-        member.setId(form.getId());
-        member.setPw(form.getPw());
-        member.setName(form.getName());
+        Account account = new Account();
+        account.setId(form.getId());
+        account.setPw(form.getPw());
+        account.setName(form.getName());
 
         if(form.getEmail().equals("admin")) {
-            member.setLevel(1);
-            member.setEmail("admin Account");
+            account.setLevel(1);
+            account.setEmail("admin account");
         }
         else {
-            member.setEmail(form.getEmail());
+            account.setEmail(form.getEmail());
         }
 
-        memberRepository.persistMember(member);
+        accountRepository.persistAccount(account);
 
-        return member.getId();
+        return account.getId();
     }
 
     /**
      * 회원정보
      */
     // 로그인 정보
-    public Member findMember() {
+    public Account findAccount() {
 
         String id = (String) session.getAttribute("id");
 
-        return memberRepository.findMember(id);
+        return accountRepository.findAccount(id);
     }
     // 회원정보 페이지
-    public Member infoPage() {
+    public Account infoPage() {
 
         String id = (String) session.getAttribute("id");
 
-        Member member = memberRepository.findMember(id);
+        Account account = accountRepository.findAccount(id);
 
-        return member;
+        return account;
     }
-
 
 
 }

@@ -19,7 +19,7 @@
             <tbody>
             <tr th:each="bList : ${boardList}">
                 <td th:text="${bList.getNo()}"></td>
-                <td th:text="${bList.getMember().getId()}"></td>
+                <td th:text="${bList.getAccount().getId()}"></td>
                 <td><a th:text="${bList.getTitle()}" th:href="'/board/contents?no='+${bList.getNo()}"></a></td>
                 <td th:text="${bList.getWriteDate()}"></td>
             </tr>

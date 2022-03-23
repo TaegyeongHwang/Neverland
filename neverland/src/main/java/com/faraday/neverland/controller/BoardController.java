@@ -1,10 +1,9 @@
 package com.faraday.neverland.controller;
 
 import com.faraday.neverland.domain.Board;
-import com.faraday.neverland.domain.Member;
 import com.faraday.neverland.form.WriteForm;
 import com.faraday.neverland.service.BoardService;
-import com.faraday.neverland.service.MemberService;
+import com.faraday.neverland.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,7 +21,7 @@ import java.util.List;
 @Slf4j
 public class BoardController {
 
-    private final MemberService memberService;
+    private final AccountService memberService;
     private final BoardService boardService;
 
     /**

@@ -24,22 +24,22 @@ public class LoginController {
      * 로그인
      */
     // 로그인 페이지
-    @GetMapping("/member/login")
+    @GetMapping("/account/login")
     public String loginPage(Model model) {
         model.addAttribute("loginForm", new LoginForm());
 
-        return "member/memberLogin";
+        return "account/accountLogin";
     }
 
     // 로그인
-    @PostMapping("/member/login")
+    @PostMapping("/account/login")
     public String loginProc(@Valid LoginForm form, BindingResult result, RedirectAttributes rttr) {
         log.info("loginProc()");
 
         String view = null;
 
         if (result.hasErrors()) {
-            return "member/memberLogin";
+            return "account/accountLogin";
         }
 
         view = loginService.loginProc(form, rttr);

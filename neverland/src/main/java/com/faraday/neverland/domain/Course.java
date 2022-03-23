@@ -22,16 +22,16 @@ public class Course {
     private String contents;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     @JsonIgnore
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<CourseSchedule> courseSchedules = new ArrayList<>();
 
-    public void setMember(Member member) {
-        this.member = member;
-        member.getCourse().add(this);
+    public void setAccount(Account account) {
+        this.account = account;
+        account.getCourse().add(this);
     }
 
     public void addCourseSchedule(CourseSchedule courseSchedule) {
@@ -39,13 +39,13 @@ public class Course {
         courseSchedule.setCourse(this);
     }
 
-    public static Course createCourse(Member member, CourseSchedule courseSchedule, String title, String contents) {
+    public static Course createCourse(Account account, CourseSchedule courseSchedule, String title, String contents) {
 
         Course course = new Course();
-        course.setMember(member);
+        course.setAccount(account);
         course.addCourseSchedule(courseSchedule);
-        course.setTitle(member.getId() + "의 " + title);
-        course.setContents(member.getId() + "의 " + contents);
+        course.setTitle(account.getId() + "의 " + title);
+        course.setContents(account.getId() + "의 " + contents);
 
         return course;
     }

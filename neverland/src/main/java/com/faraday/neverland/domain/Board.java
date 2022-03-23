@@ -22,13 +22,13 @@ public class Board {
     private LocalDateTime writeDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     // 연관관계 메소드
-    public void setMember(Member member) {
-        this.member = member;
-        member.getBoard().add(this);
+    public void setMember(Account account) {
+        this.account = account;
+        account.getBoard().add(this);
     }
 
 }
