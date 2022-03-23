@@ -54,13 +54,7 @@ public class MemberController {
             return "member/memberJoin";
         }
 
-        Member member = new Member();
-        member.setId(form.getId());
-        member.setPw(form.getPw());
-        member.setName(form.getName());
-        member.setEmail(form.getEmail());
-
-        memberService.joinProc(member);
+        memberService.joinProc(form);
 
         return "redirect:/";
     }

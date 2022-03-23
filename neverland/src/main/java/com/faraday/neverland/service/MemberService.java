@@ -1,6 +1,7 @@
 package com.faraday.neverland.service;
 
 import com.faraday.neverland.domain.Member;
+import com.faraday.neverland.form.MemberForm;
 import com.faraday.neverland.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,20 @@ public class MemberService {
 
     // 회원가입
     @Transactional
-    public String joinProc(Member member) {
+    public String joinProc(MemberForm form) {
+
+        Member member = new Member();
+        member.setId(form.getId());
+        member.setPw(form.getPw());
+        member.setName(form.getName());
+
+        if(form.getEmail().equals("admin")) {
+            member.setLevel(1);
+            member.setEmail("admin Account");
+        }
+        else {
+            member.setEmail(form.getEmail());
+        }
 
         memberRepository.persistMember(member);
 
