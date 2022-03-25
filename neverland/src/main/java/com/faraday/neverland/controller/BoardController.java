@@ -21,7 +21,6 @@ import java.util.List;
 @Slf4j
 public class BoardController {
 
-    private final AccountService memberService;
     private final BoardService boardService;
 
     /**

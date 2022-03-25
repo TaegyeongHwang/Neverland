@@ -1,9 +1,7 @@
 package com.faraday.neverland.controller;
 
-import com.faraday.neverland.domain.Arrival;
-import com.faraday.neverland.domain.Departure;
-import com.faraday.neverland.domain.Account;
-import com.faraday.neverland.form.RecordForm;
+import com.faraday.neverland.domain.*;
+import com.faraday.neverland.form.RegisterForm;
 import com.faraday.neverland.service.ArrivalService;
 import com.faraday.neverland.service.CourseService;
 import com.faraday.neverland.service.DepartureService;
@@ -33,35 +31,46 @@ public class CourseController {
      * 코스
      */
     // 코스 등록하기 페이지
-    @GetMapping("/course/record")
-    public String recordPage(Model model) {
-        log.info("recordPage()");
+    @GetMapping("/course/register")
+    public String registerPage(Model model) {
+        log.info("registerPage()");
 
         Account account = accountService.findAccount();
         List<Departure> departureList = departureService.departureList();
         List<Arrival> arrivalList = arrivalService.arrivalList();
 
-        model.addAttribute("recordForm", new RecordForm());
+        model.addAttribute("registerForm", new RegisterForm());
         model.addAttribute("account", account);
         model.addAttribute("departureList", departureList);
         model.addAttribute("arrivalList", arrivalList);
 
-        return "course/courseRecord";
+        return "course/courseRegister";
     }
 
     // 코스 등록하기
-    @PostMapping("/course/record")
-    public String recordProc(@Valid RecordForm form, BindingResult result) {
-        log.info("recordProc()");
+    @PostMapping("/course/register")
+    public String registerProc(@Valid RegisterForm form, BindingResult result) {
+        log.info("registerProc()");
 
         if (result.hasErrors()) {
 
-            return "course/courseRecord";
+            return "course/courseRegister";
         }
 
-        courseService.courseRecord(form);
+        courseService.courseRegister(form);
 
         return "redirect:/";
+    }
+
+    // 코스 목록보기
+    @GetMapping("/course/registerList")
+    public String registerList(Model model) {
+        log.info("registerList()");
+
+        List<Course> registerList = courseService.registerList();
+        model.addAttribute("registerList", registerList);
+
+        return "course/registerList";
     }
 
 }

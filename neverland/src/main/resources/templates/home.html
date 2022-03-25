@@ -12,6 +12,7 @@
 
         <div class="jumbotron">
             <h1>Neverland</h1>
+            <p th:text="${session.id}">
             <p class="lead">회원</p>
             <p>
                 <a class="btn btn-lg btn-secondary" href="/account/join">회원가입</a>
@@ -23,19 +24,36 @@
             <p class="lead">Neverland</p>
             <p>
                 <a class="btn btn-lg btn-dark" href="/board">게시판</a>
-                <a class="btn btn-lg btn-dark" href="/course/record">기록하기</a>
+                <a class="btn btn-lg btn-dark" href="/course/register">등록하기</a>
+                <a class="btn btn-lg btn-dark" href="/course/registerList">목록보기</a>
             </p>
             <hr>
 
             <p class="lead">Admin</p>
             <p>
-                <a class="btn btn-lg btn-info" href="/departure/register">출발위치</a>
-                <a class="btn btn-lg btn-info" href="/arrival/register">도착위치</a>
+                <a class="btn btn-lg btn-info" href="/departure/register" id="depart">출발위치</a>
+                <a class="btn btn-lg btn-info" href="/arrival/register" id="arrival">도착위치</a>
             </p>
         </div>
 
     <div th:replace="fragments/footer :: footer" />
 </div>
+
+<script th:inline="javascript">
+
+    var loginLevel = [[${session.level}]];
+    console.log(loginLevel);
+
+    if(loginLevel == 1) {
+        $("#depart").css("display", "inline-block");
+        $("#arrival").css("display", "inline-block");
+    }
+    else {
+        $("#depart").css("display", "none");
+        $("#arrival").css("display", "none");
+    }
+
+</script>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 package com.faraday.neverland.service;
 
 import com.faraday.neverland.domain.*;
-import com.faraday.neverland.form.RecordForm;
+import com.faraday.neverland.form.RegisterForm;
 import com.faraday.neverland.repository.ArrivalRepository;
 import com.faraday.neverland.repository.CourseRepository;
 import com.faraday.neverland.repository.DepartureRepository;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -29,7 +30,7 @@ public class CourseService {
      */
     // 코스 등록하기
     @Transactional
-    public void courseRecord(RecordForm form) {
+    public void courseRegister(RegisterForm form) {
 
         String id = (String) session.getAttribute("id");
 
@@ -43,6 +44,11 @@ public class CourseService {
 
         courseRepository.persistCourse(course);
 
+    }
+
+    public List<Course> registerList() {
+
+        return courseRepository.findRegisterList();
     }
 
 }

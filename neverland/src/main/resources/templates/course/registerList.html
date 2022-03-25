@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+
+<div class="container">
+
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>아이디</th>
+                <th>코스제목</th>
+                <th>코스내용</th>
+                <th>출발장소</th>
+                <th>출발위치</th>
+                <th>도착장소</th>
+                <th>도착위치</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="register : ${registerList}">
+                <td th:text="${register.account.id}"></td>
+                <td th:text="${register.title}"></td>
+                <td th:text="${register.contents}"></td>
+                <td th:text="${register.courseSchedules[0].departure.name}"></td>
+                <td th:text="${register.courseSchedules[0].departure.location}"></td>
+                <td th:text="${register.courseSchedules[0].arrival.name}"></td>
+                <td th:text="${register.courseSchedules[0].arrival.location}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"/>
+
+</div>
+
+</body>
+</html>
