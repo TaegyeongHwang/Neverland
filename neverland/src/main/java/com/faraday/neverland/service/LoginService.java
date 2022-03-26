@@ -4,7 +4,6 @@ import com.faraday.neverland.domain.Account;
 import com.faraday.neverland.form.LoginForm;
 import com.faraday.neverland.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -34,14 +33,14 @@ public class LoginService {
             if (account.getPw().equals(form.getPw())) {
                 session.setAttribute("id", account.getId());
                 session.setAttribute("level", account.getLevel());
-                view = "redirect:/";
+                view = "/";
             }
             else {
-                view = "redirect:/account/login";
+                view = "/account/login";
                 alert ="비밀번호가 틀렸습니다!";
             }
         } else {
-            view = "redirect:/account/login";
+            view = "/account/login";
             alert = "아이디가 없습니다!";
         }
 

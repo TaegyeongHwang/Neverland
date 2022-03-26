@@ -2,55 +2,66 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header">
     <title>Hello</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 
 <body>
 
 <div class="container">
-    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
-        <div class="jumbotron">
-            <h1>Neverland</h1>
-            <p th:text="${session.id}">
+    <div class="jumbotron">
+        <h1>Neverland</h1>
+        <div id="account">
             <p class="lead">회원</p>
             <p>
-                <a class="btn btn-lg btn-secondary" href="/account/join">회원가입</a>
+                <a class="btn btn-lg btn-secondary" href="/account/join" >회원가입</a>
                 <a class="btn btn-lg btn-secondary" href="/account/login" id="login">로그인</a>
                 <a class="btn btn-lg btn-secondary" href="/account/logout" id="logout">로그아웃</a>
             </p>
-            <hr>
+        </div>
+        <hr>
 
+        <div id="member">
             <p class="lead">Neverland</p>
             <p>
                 <a class="btn btn-lg btn-dark" href="/board">게시판</a>
                 <a class="btn btn-lg btn-dark" href="/course/register">등록하기</a>
                 <a class="btn btn-lg btn-dark" href="/course/registerList">목록보기</a>
             </p>
-            <hr>
+        </div>
+        <hr>
 
+        <div id="admin">
             <p class="lead">Admin</p>
             <p>
-                <a class="btn btn-lg btn-info" href="/departure/register" id="depart">출발위치</a>
-                <a class="btn btn-lg btn-info" href="/arrival/register" id="arrival">도착위치</a>
+                <a class="btn btn-lg btn-info" href="/departure/register">출발위치</a>
+                <a class="btn btn-lg btn-info" href="/arrival/register">도착위치</a>
             </p>
         </div>
+    </div>
 
-    <div th:replace="fragments/footer :: footer" />
+    <div th:replace="fragments/footer :: footer"/>
 </div>
 
 <script th:inline="javascript">
 
-    var loginLevel = [[${session.level}]];
-    console.log(loginLevel);
+    var loginId = [[${session.id}]];
 
-    if(loginLevel == 1) {
-        $("#depart").css("display", "inline-block");
-        $("#arrival").css("display", "inline-block");
+    if (loginId != null) {
+        $("#login").css("display", "none");
+        $("#logout").css("display", "inline-block");
+    } else {
+        $("#login").css("display", "inline-block");
+        $("#logout").css("display", "none");
     }
-    else {
-        $("#depart").css("display", "none");
-        $("#arrival").css("display", "none");
+
+    var loginLevel = [[${session.level}]];
+
+    if (loginLevel == 1) {
+        $("#admin").css("display", "inline-block");
+    } else {
+        $("#admin").css("display", "none");
     }
 
 </script>

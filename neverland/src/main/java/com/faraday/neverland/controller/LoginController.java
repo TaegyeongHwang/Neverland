@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -19,6 +20,8 @@ import javax.validation.Valid;
 public class LoginController {
 
     private final LoginService loginService;
+
+    private final HttpSession session;
 
     /**
      * 로그인
@@ -46,6 +49,16 @@ public class LoginController {
 
         return view;
 
+    }
+
+    // 로그아웃
+    @GetMapping("/account/logout")
+    public String logoutProc() {
+        log.info("logoutProc");
+
+        session.invalidate();
+
+        return "redirect:/";
     }
 
 }
