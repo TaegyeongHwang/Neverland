@@ -44,7 +44,7 @@ public class DepartureController {
 
         Departure departure = new Departure();
         departure.setName(form.getName());
-        departure.setLocation(form.getLocation());
+        departure.setInformation(form.getInformation());
 
         departureService.departRegiProc(departure);
 

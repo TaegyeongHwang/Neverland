@@ -45,7 +45,7 @@ public class ArrivalController {
 
         Arrival arrival = new Arrival();
         arrival.setName(form.getName());
-        arrival.setLocation(form.getLocation());
+        arrival.setInformation(form.getInformation());
 
         arrivalService.arrivalRegiProc(arrival);
 

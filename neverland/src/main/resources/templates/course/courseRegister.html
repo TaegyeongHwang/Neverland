@@ -33,22 +33,22 @@
         </div>
 
         <div class="form-group">
-            <label for="departure">출발위치</label>
+            <label for="departure">출발장소</label>
             <select th:field="*{departNo}" id="departure" class="form-control">
                 <option value="">위치선택</option>
                 <option th:each="departure : ${departureList}"
                         th:value="${departure.no}"
-                        th:text="${departure.name} + ' ' + ${departure.location}"/>
+                        th:text="${departure.name} + ' ' + ${departure.information}"/>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="arrival">도착위치</label>
+            <label for="arrival">도착장소</label>
             <select th:field="*{arrivalNo}" id="arrival" class="form-control">
                 <option value="">위치선택</option>
                 <option th:each="arrival : ${arrivalList}"
                         th:value="${arrival.no}"
-                        th:text="${arrival.name} + ' ' + ${arrival.location}"/>
+                        th:text="${arrival.name} + ' ' + ${arrival.information}"/>
             </select>
         </div>
 

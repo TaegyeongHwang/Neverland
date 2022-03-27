@@ -15,9 +15,7 @@
                 <th>코스제목</th>
                 <th>코스내용</th>
                 <th>출발장소</th>
-                <th>출발위치</th>
                 <th>도착장소</th>
-                <th>도착위치</th>
                 <th></th>
             </tr>
             </thead>
@@ -27,9 +25,7 @@
                 <td th:text="${register.title}"></td>
                 <td th:text="${register.contents}"></td>
                 <td th:text="${register.courseSchedules[0].departure.name}"></td>
-                <td th:text="${register.courseSchedules[0].departure.location}"></td>
                 <td th:text="${register.courseSchedules[0].arrival.name}"></td>
-                <td th:text="${register.courseSchedules[0].arrival.location}"></td>
             </tr>
             </tbody>
         </table>

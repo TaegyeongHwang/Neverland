@@ -70,7 +70,7 @@ public class CourseController {
         List<Course> registerList = courseService.registerList();
         model.addAttribute("registerList", registerList);
 
-        return "course/registerList";
+        return "course/courseList";
     }
 
 }

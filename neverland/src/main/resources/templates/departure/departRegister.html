@@ -9,6 +9,7 @@
 <body>
 
 <div class="container">
+
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
     <form role="form" action="/departure/register" th:object="${departureForm}" method="post">
@@ -17,14 +18,13 @@
             <input type="text" th:field="*{name}" class="form-control" placeholder="출발장소를 입력하세요"
                    th:class="${#fields.hasErrors('name')} ? 'form-control fieldError' : 'form-control'">
             <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red">Incorrect date</p>
-
         </div>
 
         <div class="form-group">
-            <label th:for="pw">출발위치</label>
-            <input type="number" th:field="*{location}" class="form-control" placeholder="출발위치를 입력하세요"
-                   th:class="${#fields.hasErrors('location')} ? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('location')}" th:errors="*{location}" style="color: red">Incorrect date</p>
+            <label th:for="pw">장소설명</label>
+            <input type="text"th:field="*{information}" class="form-control" placeholder="출발위치를 입력하세요"
+                   th:class="${#fields.hasErrors('information')} ? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('information')}" th:errors="*{information}" style="color: red">Incorrect date</p>
         </div>
 
         <button type="submit" class="btn btn-primary">등록하기</button>
@@ -32,6 +32,7 @@
     <br/>
 
     <div th:replace="fragments/footer :: footer"/>
+
 </div>
 
 </body>

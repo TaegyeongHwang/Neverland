@@ -19,7 +19,7 @@ public class Departure {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(length = 255, nullable = false)
-    private double location;
+    @Column(nullable = false)
+    private String information;
 
 }
