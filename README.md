@@ -22,7 +22,7 @@
 ## 2주차
 - 07(월) : 프로젝트 구성 및 Spirng Initializr 생성
 - 08(화) : Member, Board Entity 구성
-- 
+
 ## 3주차
 - 15(화) : 회원가입 및 로그인
 - 16(수) : 회원가입 중복확인
@@ -30,7 +30,7 @@
 - 18(금) : 게시판 글쓰기
 - 19(토) : 게시판 불러오기, 내용 보기
 - 20(일) : 게시판 수정, 삭제 
-- 
+
 ## 4주차
 - 21(월) : Course, CourseWay, StartWay, EndWay Entity
 - 22(화) : 출발, 도착위치, 코스 기록하기, 로그인 클래스 분리
@@ -38,6 +38,6 @@
 - 25(금) : course 목록 보기
 - 26(토) : 로그아웃
 - 27(일) : course location > course information 변경
-- 
+
 ## 5주차
 - 29(화) : course 상세보기
