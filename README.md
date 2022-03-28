@@ -18,15 +18,26 @@
 - Spring Data JPA
 
 ## 업데이트 내용
-- 2022.03.07(월) : 프로젝트 구성 및 Spirng Initializr 생성
-- 2022.03.08(화) : Member, Board Entity 구성
-- 2022.03.15(화) : [create] 회원가입 및 로그인 기능
-- 2022.03.16(수) : 회원가입 중복확인
-- 2022.03.17(목) : [create] 게시판 구성
-- 2022.03.18(금) : 게시판 글쓰기
-- 2022.03.19(토) : 게시판 불러오기, 내용 보기
-- 2022.03.20(일) : 게시판 내용 수정, 삭제 
-- 2022.03.21(월) : [create] Course, CourseWay, StartWay, EndWay Entity
-- 2022.03.22(화) : 출발, 도착위치, 코스 기록하기, 로그인 기능 클래스 분리
-- 2022.03.23(수) : admin 계정 level값 부여, Member를 Account로 변경
-- 2022.03.25(금) : course 목록 보기 추가
+# 3월
+## 2주차
+- 07(월) : 프로젝트 구성 및 Spirng Initializr 생성
+- 08(화) : Member, Board Entity 구성
+- 
+## 3주차
+- 15(화) : 회원가입 및 로그인
+- 16(수) : 회원가입 중복확인
+- 17(목) : 게시판 구성
+- 18(금) : 게시판 글쓰기
+- 19(토) : 게시판 불러오기, 내용 보기
+- 20(일) : 게시판 수정, 삭제 
+- 
+## 4주차
+- 21(월) : Course, CourseWay, StartWay, EndWay Entity
+- 22(화) : 출발, 도착위치, 코스 기록하기, 로그인 클래스 분리
+- 23(수) : admin 계정 level값 부여, Member를 Account로 변경
+- 25(금) : course 목록 보기
+- 26(토) : 로그아웃
+- 27(일) : course location > course information 변경
+- 
+## 5주차
+- 29(화) : course 상세보기
