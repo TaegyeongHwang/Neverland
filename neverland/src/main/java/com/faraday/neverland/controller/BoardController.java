@@ -3,7 +3,6 @@ package com.faraday.neverland.controller;
 import com.faraday.neverland.domain.Board;
 import com.faraday.neverland.form.WriteForm;
 import com.faraday.neverland.service.BoardService;
-import com.faraday.neverland.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -34,7 +33,7 @@ public class BoardController {
         List<Board> boardList = boardService.boardList();
         model.addAttribute("boardList", boardList);
 
-        return "board/boardList";
+        return "/board/boardList";
     }
 
     /**
@@ -47,7 +46,7 @@ public class BoardController {
 
         model.addAttribute("writeForm", new WriteForm());
 
-        return "board/boardWrite";
+        return "/board/boardWrite";
     }
 
     // 글쓰기
@@ -57,7 +56,7 @@ public class BoardController {
 
         if (result.hasErrors()) {
 
-            return "board/boardWrite";
+            return "/board/boardWrite";
         }
 
         boardService.writeProc(form.getTitle(), form.getContents());

@@ -20,12 +20,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="register : ${registerList}">
-                <td th:text="${register.account.id}"></td>
-                <td th:text="${register.title}"></td>
-                <td th:text="${register.contents}"></td>
-                <td th:text="${register.courseSchedules[0].departure.name}"></td>
-                <td th:text="${register.courseSchedules[0].arrival.name}"></td>
+            <tr th:each="course : ${courseList}">
+                <td th:text="${course.account.id}"></td>
+                <td><a th:text="${course.title}" th:href="'/course/contents?no='+${course.getNo()}"></a></td>
+                <td th:text="${course.contents}"></td>
+                <td th:text="${course.courseSchedules[0].departure.name}"></td>
+                <td th:text="${course.courseSchedules[0].arrival.name}"></td>
             </tr>
             </tbody>
         </table>

@@ -33,14 +33,14 @@ public class LoginService {
             if (account.getPw().equals(form.getPw())) {
                 session.setAttribute("id", account.getId());
                 session.setAttribute("level", account.getLevel());
-                view = "/";
+                view = "/home";
             }
             else {
-                view = "/account/login";
+                view = "/account/accountLogin";
                 alert ="비밀번호가 틀렸습니다!";
             }
         } else {
-            view = "/account/login";
+            view = "/account/accountLogin";
             alert = "아이디가 없습니다!";
         }
 

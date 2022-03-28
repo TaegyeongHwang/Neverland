@@ -46,9 +46,18 @@ public class CourseService {
 
     }
 
-    public List<Course> registerList() {
+    public List<Course> courseList() {
 
-        return courseRepository.findRegisterList();
+        return courseRepository.findCourseList();
+    }
+
+    /**
+     * 상세내용
+     */
+    // 상세내용 페이지
+    public Course contentsPage(Long pageNo) {
+
+        return courseRepository.findCourse(pageNo);
     }
 
 }

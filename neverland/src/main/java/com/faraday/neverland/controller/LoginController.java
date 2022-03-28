@@ -31,7 +31,7 @@ public class LoginController {
     public String loginPage(Model model) {
         model.addAttribute("loginForm", new LoginForm());
 
-        return "account/accountLogin";
+        return "/account/accountLogin";
     }
 
     // 로그인
@@ -42,7 +42,7 @@ public class LoginController {
         String view = null;
 
         if (result.hasErrors()) {
-            return "account/accountLogin";
+            return "/account/accountLogin";
         }
 
         view = loginService.loginProc(form, rttr);

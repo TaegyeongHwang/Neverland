@@ -44,8 +44,8 @@ public class Course {
         Course course = new Course();
         course.setAccount(account);
         course.addCourseSchedule(courseSchedule);
-        course.setTitle(account.getId() + "의 " + title);
-        course.setContents(account.getId() + "의 " + contents);
+        course.setTitle(title);
+        course.setContents(contents);
 
         return course;
     }

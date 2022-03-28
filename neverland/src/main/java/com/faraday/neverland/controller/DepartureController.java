@@ -29,7 +29,7 @@ public class DepartureController {
         log.info("departRegiPage()");
         model.addAttribute("departureForm", new DepartureForm());
 
-        return "departure/departRegister";
+        return "/departure/departRegister";
     }
 
     // 출발장소 등록
@@ -39,7 +39,7 @@ public class DepartureController {
 
         if (result.hasErrors()) {
 
-            return "departure/departRegister";
+            return "/departure/departRegister";
         }
 
         Departure departure = new Departure();

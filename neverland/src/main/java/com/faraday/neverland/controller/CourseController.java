@@ -44,7 +44,7 @@ public class CourseController {
         model.addAttribute("departureList", departureList);
         model.addAttribute("arrivalList", arrivalList);
 
-        return "course/courseRegister";
+        return "/course/courseRegister";
     }
 
     // 코스 등록하기
@@ -54,7 +54,7 @@ public class CourseController {
 
         if (result.hasErrors()) {
 
-            return "course/courseRegister";
+            return "/course/courseRegister";
         }
 
         courseService.courseRegister(form);
@@ -62,15 +62,32 @@ public class CourseController {
         return "redirect:/";
     }
 
-    // 코스 목록보기
-    @GetMapping("/course/registerList")
-    public String registerList(Model model) {
-        log.info("registerList()");
+    /**
+     * 코스 목록
+     */
+    // 코스 목록
+    @GetMapping("/course/list")
+    public String courseList(Model model) {
+        log.info("courseList()");
 
-        List<Course> registerList = courseService.registerList();
-        model.addAttribute("registerList", registerList);
+        List<Course> courseList = courseService.courseList();
+        model.addAttribute("courseList", courseList);
 
-        return "course/courseList";
+        return "/course/courseList";
+    }
+
+    /**
+     * 상세내용
+     */
+    // 코스 상세 페이기
+    @GetMapping("/course/contents")
+    public String contentsPage(Long no, Model model) {
+        log.info("contentsPage()" + no);
+
+        Course course = courseService.contentsPage(no);
+        model.addAttribute("course", course);
+
+        return "/course/courseContents";
     }
 
 }

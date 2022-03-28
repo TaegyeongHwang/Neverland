@@ -18,8 +18,13 @@ public class CourseRepository {
         em.persist(course);
     }
 
-    public List<Course> findRegisterList() {
+    public List<Course> findCourseList() {
 
         return em.createQuery("select c from Course c", Course.class).getResultList();
+    }
+
+    public Course findCourse(Long pageNo) {
+
+        return em.find(Course.class, pageNo);
     }
 }

@@ -30,7 +30,7 @@ public class ArrivalController {
         log.info("arrivalRegiPage()");
         model.addAttribute("arrivalForm", new DepartureForm());
 
-        return "arrival/arrivalRegister";
+        return "/arrival/arrivalRegister";
     }
 
     // 출발장소 등록
@@ -40,7 +40,7 @@ public class ArrivalController {
 
         if (result.hasErrors()) {
 
-            return "arrival/arrivalRegister";
+            return "/arrival/arrivalRegister";
         }
 
         Arrival arrival = new Arrival();

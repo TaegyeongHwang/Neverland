@@ -29,7 +29,7 @@ public class AccountController {
         log.info("joinPage()");
         model.addAttribute("accountForm", new AccountForm());
 
-        return "account/accountJoin";
+        return "/account/accountJoin";
     }
 
     // 아이디 중복확인
@@ -50,12 +50,12 @@ public class AccountController {
 
         if (result.hasErrors()) {
 
-            return "account/accountJoin";
+            return "/account/accountJoin";
         }
 
         accountService.joinProc(form);
 
-        return "redirect:/";
+        return "/home";
     }
 
 }
