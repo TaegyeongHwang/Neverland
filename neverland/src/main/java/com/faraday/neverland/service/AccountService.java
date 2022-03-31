@@ -1,7 +1,7 @@
 package com.faraday.neverland.service;
 
 import com.faraday.neverland.domain.Account;
-import com.faraday.neverland.form.AccountForm;
+import com.faraday.neverland.form.AccountJoinForm;
 import com.faraday.neverland.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,7 +39,7 @@ public class AccountService {
 
     // 회원가입
     @Transactional
-    public String joinProc(AccountForm form) {
+    public String accountJoinProc(AccountJoinForm form) {
 
         Account account = new Account();
         account.setId(form.getId());
@@ -58,26 +58,5 @@ public class AccountService {
 
         return account.getId();
     }
-
-    /**
-     * 회원정보
-     */
-    // 로그인 정보
-    public Account findAccount() {
-
-        String id = (String) session.getAttribute("id");
-
-        return accountRepository.findAccount(id);
-    }
-    // 회원정보 페이지
-    public Account infoPage() {
-
-        String id = (String) session.getAttribute("id");
-
-        Account account = accountRepository.findAccount(id);
-
-        return account;
-    }
-
 
 }

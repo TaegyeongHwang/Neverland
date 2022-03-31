@@ -1,6 +1,6 @@
 package com.faraday.neverland.controller;
 
-import com.faraday.neverland.form.AccountForm;
+import com.faraday.neverland.form.AccountJoinForm;
 import com.faraday.neverland.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +25,9 @@ public class AccountController {
      */
     // 회원가입 페이지
     @GetMapping("/account/join")
-    public String joinPage(Model model) {
-        log.info("joinPage()");
-        model.addAttribute("accountForm", new AccountForm());
+    public String accountJoinPage(Model model) {
+        log.info("accountJoinPage()");
+        model.addAttribute("accountJoinForm", new AccountJoinForm());
 
         return "/account/accountJoin";
     }
@@ -45,17 +45,17 @@ public class AccountController {
 
     // 회원가입
     @PostMapping("/account/join")
-    public String joinProc(@Valid AccountForm form, BindingResult result) {
-        log.info("joinProc()");
+    public String accountJoinProc(@Valid AccountJoinForm form, BindingResult result) {
+        log.info("accountJoinProc()");
 
         if (result.hasErrors()) {
 
             return "/account/accountJoin";
         }
 
-        accountService.joinProc(form);
+        accountService.accountJoinProc(form);
 
-        return "/home";
+        return "redirect:/";
     }
 
 }

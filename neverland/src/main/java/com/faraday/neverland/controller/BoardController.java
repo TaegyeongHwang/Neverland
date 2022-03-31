@@ -1,7 +1,7 @@
 package com.faraday.neverland.controller;
 
 import com.faraday.neverland.domain.Board;
-import com.faraday.neverland.form.WriteForm;
+import com.faraday.neverland.form.BoardWriteForm;
 import com.faraday.neverland.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +26,9 @@ public class BoardController {
      * 게시판
      */
     // 게시판 페이지
-    @GetMapping("/board")
-    public String boardPage(Model model) {
-        log.info("boardPage()");
+    @GetMapping("/board/list")
+    public String boardListPage(Model model) {
+        log.info("boardListPage()");
 
         List<Board> boardList = boardService.boardList();
         model.addAttribute("boardList", boardList);
@@ -41,25 +41,25 @@ public class BoardController {
      */
     // 글쓰기 페이지
     @GetMapping("/board/write")
-    public String writePage(Model model) {
-        log.info("writePage()");
+    public String boardWritePage(Model model) {
+        log.info("boardWritePage()");
 
-        model.addAttribute("writeForm", new WriteForm());
+        model.addAttribute("boardWriteForm", new BoardWriteForm());
 
         return "/board/boardWrite";
     }
 
     // 글쓰기
     @PostMapping("/board/write")
-    public String writeProc(@Valid WriteForm form, BindingResult result, Model model) {
-        log.info("writeProc()");
+    public String boardWriteProc(@Valid BoardWriteForm form, BindingResult result, Model model) {
+        log.info("boardWriteProc()");
 
         if (result.hasErrors()) {
 
             return "/board/boardWrite";
         }
 
-        boardService.writeProc(form.getTitle(), form.getContents());
+        boardService.boardWriteProc(form.getTitle(), form.getContents());
 
         return "redirect:/";
     }
@@ -69,10 +69,10 @@ public class BoardController {
      */
     // 상세내용 페이기
     @GetMapping("/board/contents")
-    public String contentsPage(Long no, Model model) {
-        log.info("contentsPage()" + no);
+    public String boardContentsPage(Long no, Model model) {
+        log.info("boardContentsPage()" + no);
 
-        Board board = boardService.contentsPage(no);
+        Board board = boardService.boardContentsPage(no);
         model.addAttribute("board", board);
 
         return "/board/boardContents";
@@ -80,10 +80,10 @@ public class BoardController {
 
     // 수정하기 페이지
     @GetMapping("/board/update")
-    public String updatePage(Long no, Model model) {
-        log.info("updatePage()" + no);
+    public String boardUpdatePage(Long no, Model model) {
+        log.info("boardUpdatePage()" + no);
 
-        Board boardUpdate = boardService.updatePage(no);
+        Board boardUpdate = boardService.boardUpdatePage(no);
         model.addAttribute("boardUpdate", boardUpdate);
 
         return "/board/boardUpdate";
@@ -91,20 +91,20 @@ public class BoardController {
 
     // 수정하기
     @PostMapping("/board/update")
-    public String updateWrite(Long no, @ModelAttribute("update") WriteForm form, Model model) {
-        log.info("updateWrite()" + no);
+    public String boardUpdateProc(Long no, @ModelAttribute("update") BoardWriteForm form, Model model) {
+        log.info("boardUpdateProc()" + no);
 
-        boardService.updateWrite(no, form.getTitle(), form.getContents());
+        boardService.boardUpdateProc(no, form.getTitle(), form.getContents());
 
         return "redirect:/";
     }
 
     // 삭제하기
     @GetMapping("/board/delete")
-    public String deleteProc(Long no, Model model) {
-        log.info("deleteProc()" + no);
+    public String boardDeleteProc(Long no, Model model) {
+        log.info("boardDeleteProc()" + no);
 
-        boardService.deleteProc(no);
+        boardService.boardDeleteProc(no);
 
         return "redirect:/";
     }

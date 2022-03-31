@@ -36,7 +36,7 @@ public class BoardService {
      */
     // 글쓰기
     @Transactional
-    public Long writeProc(String title, String contents) {
+    public Long boardWriteProc(String title, String contents) {
 
         String id = (String) session.getAttribute("id");
 
@@ -57,20 +57,20 @@ public class BoardService {
      * 상세내용
      */
     // 상세내용 페이지
-    public Board contentsPage(Long pageNo) {
+    public Board boardContentsPage(Long pageNo) {
 
         return boardRepository.findBoard(pageNo);
     }
 
     // 수정하기 페이지
-    public Board updatePage(Long pageNo) {
+    public Board boardUpdatePage(Long pageNo) {
 
         return boardRepository.findBoard(pageNo);
     }
 
     // 수정하기
     @Transactional
-    public void updateWrite(Long no, String title, String contents) {
+    public void boardUpdateProc(Long no, String title, String contents) {
 
         Board board = boardRepository.findBoard(no);
         board.setTitle(title);
@@ -80,7 +80,7 @@ public class BoardService {
 
     // 삭제하기
     @Transactional
-    public void deleteProc(Long no) {
+    public void boardDeleteProc(Long no) {
 
         Board board = boardRepository.findBoard(no);
 

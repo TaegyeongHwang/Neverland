@@ -12,11 +12,13 @@ public class AccountRepository {
 
     private final EntityManager em;
 
+    // 회원정보 조회
     public Account findAccount(String id) {
 
         return em.find(Account.class, id);
     }
 
+    // 회원가입
     public void persistAccount(Account account) {
 
         em.persist(account);

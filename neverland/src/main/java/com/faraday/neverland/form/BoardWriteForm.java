@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotEmpty;
 
 @Getter @Setter
-public class WriteForm {
+public class BoardWriteForm {
 
     @NotEmpty(message = "제목은 필수입니다!")
     private String title;

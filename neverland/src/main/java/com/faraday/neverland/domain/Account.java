@@ -32,7 +32,4 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Board> board = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "account")
-    private List<Course> course = new ArrayList<>();
 }
