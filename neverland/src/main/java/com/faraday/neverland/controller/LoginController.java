@@ -35,7 +35,7 @@ public class LoginController {
     }
 
     // 로그인
-    @PostMapping("/account/login")
+    @PostMapping("/account/loginProc")
     public String loginProc(@Valid LoginForm form, BindingResult result, RedirectAttributes rttr) {
         log.info("loginProc()");
 

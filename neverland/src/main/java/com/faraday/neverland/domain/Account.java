@@ -17,7 +17,7 @@ public class Account {
     private String id;
 
     @Column(length = 100, nullable = false)
-    private String pw;
+    private String pwd;
 
     @Column(length = 50, nullable = false)
     private String name;
@@ -31,5 +31,9 @@ public class Account {
     @JsonIgnore
     @OneToMany(mappedBy = "account")
     private List<Board> board = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "account")
+    private List<Travel> travel = new ArrayList<>();
 
 }

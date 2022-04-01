@@ -43,7 +43,7 @@ public class AccountService {
 
         Account account = new Account();
         account.setId(form.getId());
-        account.setPw(form.getPw());
+        account.setPwd(form.getPwd());
         account.setName(form.getName());
 
         if(form.getEmail().equals("admin")) {

@@ -44,7 +44,7 @@ public class AccountController {
     }
 
     // 회원가입
-    @PostMapping("/account/join")
+    @PostMapping("/account/joinProc")
     public String accountJoinProc(@Valid AccountJoinForm form, BindingResult result) {
         log.info("accountJoinProc()");
 

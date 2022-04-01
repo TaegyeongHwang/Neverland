@@ -26,7 +26,7 @@ public class Board {
     private Account account;
 
     // 연관관계 메소드
-    public void setMember(Account account) {
+    public void setAccount(Account account) {
         this.account = account;
         account.getBoard().add(this);
     }

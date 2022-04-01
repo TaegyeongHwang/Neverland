@@ -29,19 +29,20 @@ public class LoginService {
 
         Account account = accountRepository.findAccount(form.getId());
 
-        if (account != null) {
-            if (account.getPw().equals(form.getPw())) {
+        if (account == null) {
+            view = "redirect:/account/login";
+            alert = "아이디가 없습니다!";
+        }
+        else {
+            if(account.getPwd().equals(form.getPwd())) {
                 session.setAttribute("id", account.getId());
                 session.setAttribute("level", account.getLevel());
-                view = "/home";
+                view = "redirect:/";
             }
             else {
-                view = "/account/accountLogin";
-                alert ="비밀번호가 틀렸습니다!";
+                view = "redirect:/account/login";
+                alert = "비밀번호가 틀렸습니다!";
             }
-        } else {
-            view = "/account/accountLogin";
-            alert = "아이디가 없습니다!";
         }
 
         rttr.addFlashAttribute("alert", alert);

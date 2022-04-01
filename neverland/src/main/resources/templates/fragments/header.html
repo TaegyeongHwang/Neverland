@@ -23,7 +23,9 @@
 
     <script th:inline="javascript">
 
-        var message = [[${alert}]];
+        const message = [[${alert}]];
+
+        console.log(message);
 
         if (message != null) {
             alert(message);

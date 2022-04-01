@@ -12,6 +12,6 @@ public class LoginForm {
     private String id;
 
     @NotEmpty(message = "비밀번호는 필수입니다!")
-    private String pw;
+    private String pwd;
 
 }

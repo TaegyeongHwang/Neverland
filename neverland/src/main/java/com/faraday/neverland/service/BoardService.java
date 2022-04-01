@@ -43,7 +43,7 @@ public class BoardService {
         Account account = accountRepository.findAccount(id);
 
         Board board = new Board();
-        board.setMember(account);
+        board.setAccount(account);
         board.setTitle(title);
         board.setContents(contents);
         board.setWriteDate(LocalDateTime.now());
