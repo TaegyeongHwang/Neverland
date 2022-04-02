@@ -32,7 +32,7 @@
 - 20(일) : 게시판 수정, 삭제 
 
 ## 4주차
-- 21(월) : Course, CourseWay, StartWay, EndWay Entity
+- 21(월) : Course, CourseWay, StartWay, EndWay Entity 
 - 22(화) : 출발, 도착위치, 코스 기록하기, 로그인 클래스 분리
 - 23(수) : admin 계정 level값 부여, Member를 Account로 변경
 - 25(금) : course 목록 보기
@@ -41,4 +41,8 @@
 
 ## 5주차
 - 29(화) : course 상세보기
-- 31(수) : Course 삭제 및 Account 메소드명 정리
+- 31(수) : course 삭제 및 account 메소드명 정리
+
+# 4월
+## 1주차
+- 01(금) : Travel, TravelDestination, Destination Entity 구성
