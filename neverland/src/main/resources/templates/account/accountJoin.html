@@ -55,7 +55,7 @@
 </body>
 <script th:inline="javascript">
     function checkId() {
-        var getId = $("#id").val();
+        const getId = $("#id").val();
 
         if (getId == "") {
             alert("아이디를 입력하세요!");
@@ -63,7 +63,7 @@
             return;
         }
 
-        var sendId = {"id":getId}
+        const sendId = {"id" : getId}
 
         $.ajax({
             url: "/checkId",

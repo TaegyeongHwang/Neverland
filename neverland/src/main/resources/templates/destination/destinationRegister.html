@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+</style>
+<body>
+
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+    <form role="form" action="/destination/registerProc" th:object="${destinationRegisterForm}" method="post">
+
+        <div class="form-group">
+            <label th:for="name">장소이름</label>
+            <input type="text" th:field="*{name}" class="form-control" placeholder="장소이름을 입력하세요"
+                   th:class="${#fields.hasErrors('name')} ? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red">Incorrect date</p>
+        </div>
+
+        <div class="form-group">
+            <label th:for="information">장소정보</label>
+            <input type="text" th:field="*{information}" class="form-control" placeholder="장소정보를 입력하세요"
+                   th:class="${#fields.hasErrors('information')} ? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('information')}" th:errors="*{information}" style="color: red">Incorrect date</p>
+        </div>
+
+        <div id="map" style="width:100%;height:350px;"></div>
+
+        <div class="form-group">
+            <label th:for="latitude">위도</label>
+            <input type="number" maxlength="8" readonly th:field="*{latitude}" class="form-control" id="lati">
+        </div>
+
+        <div class="form-group">
+            <label th:for="longitude">경도</label>
+            <input type="number" maxlength="8" readonly th:field="*{longitude}" class="form-control" id="longi">
+        </div>
+
+        <button type="submit" class="btn btn-primary">등록하기</button>
+    </form>
+    <br/>
+
+
+
+    <div th:replace="fragments/footer :: footer" />
+</div>
+
+</body>
+
+<script th:inline="javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=db9c93082243a4e5cff6e58ca6f7f632"></script>
+<script>
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 13 // 지도의 확대 레벨
+        };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+    // 지도를 클릭한 위치에 표출할 마커입니다
+    var marker = new kakao.maps.Marker({
+        // 지도 중심좌표에 마커를 생성합니다
+        position: map.getCenter()
+    });
+
+    // 지도에 마커를 표시합니다
+    marker.setMap(map);
+
+    // 지도에 클릭 이벤트를 등록합니다
+    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+    kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+
+        // 클릭한 위도, 경도 정보를 가져옵니다
+        var latlng = mouseEvent.latLng;
+
+        // 마커 위치를 클릭한 위치로 옮깁니다
+        marker.setPosition(latlng);
+
+        const latitude = latlng.getLat().toFixed(6);
+        const longitude = latlng.getLng().toFixed(6);
+
+        $("#lati").attr("value", latitude);
+        $("#longi").attr("value", longitude);
+
+    });
+</script>
+</html>

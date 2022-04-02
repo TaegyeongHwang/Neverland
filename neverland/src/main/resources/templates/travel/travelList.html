@@ -10,18 +10,20 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>번호</th>
+                <th>여행번호</th>
                 <th>작성자</th>
                 <th>제목</th>
-                <th>작성시간</th>
+                <th>목적지</th>
+                <th>여행상태</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="board : ${boardList}">
-                <td th:text="${board.getNo()}"></td>
-                <td th:text="${board.getAccount().getId()}"></td>
-                <td><a th:text="${board.getTitle()}" th:href="'/board/contents?no='+${board.getNo()}"></a></td>
-                <td th:text="${board.getWriteDate()}"></td>
+            <tr th:each="travel : ${travelList}">
+                <td th:text="${travel.getNo()}"></td>
+                <td th:text="${travel.getAccount().getId()}"></td>
+                <td><a th:text="${travel.getTitle()}" th:href="'/travel/contents?no='+${travel.getNo()}"></a></td>
+                <td th:text="${travel.travelDestinations[0].destination.name}"></td>
+                <td th:text="${travel.getStatus()}"></td>
             </tr>
             </tbody>
         </table>

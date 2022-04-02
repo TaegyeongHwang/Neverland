@@ -25,6 +25,7 @@
         <div id="board">
             <p class="lead">Board</p>
             <p>
+                <a class="btn btn-lg btn-dark" href="/board/write">글쓰기</a>
                 <a class="btn btn-lg btn-dark" href="/board/list">게시판</a>
             </p>
         </div>
@@ -34,11 +35,12 @@
             <p class="lead">Course</p>
             <p>
                 <a class="btn btn-lg btn-secondary" href="/travel/register">여행신청</a>
+                <a class="btn btn-lg btn-secondary" href="/travel/list">신청목록</a>
             </p>
         </div>
         <hr>
 
-        <div id="">
+        <div id="admin">
             <p class="lead">Admin</p>
             <p>
                 <a class="btn btn-lg btn-info" href="/destination/register">목적지</a>
@@ -51,7 +53,7 @@
 
 <script th:inline="javascript">
 
-    var loginId = [[${session.id}]];
+    const loginId = [[${session.id}]];
 
     if (loginId != null) {
         $("#login").css("display", "none");
@@ -61,7 +63,7 @@
         $("#logout").css("display", "none");
     }
 
-    var loginLevel = [[${session.level}]];
+    const loginLevel = [[${session.level}]];
 
     if (loginLevel == 1) {
         $("#admin").css("display", "inline-block");
