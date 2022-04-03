@@ -25,8 +25,8 @@ public class DestinationRepository {
         return em.createQuery("select d from Destination d", Destination.class).getResultList();
     }
 
-    // 선택한 목적지 불러오기
-    public Destination findDestinationOne(Long no) {
+    // 목적지 불러오기
+    public Destination findDestinationContents(Long no) {
 
         return em.find(Destination.class, no);
     }

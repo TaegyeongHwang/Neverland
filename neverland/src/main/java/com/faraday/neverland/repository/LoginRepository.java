@@ -1,5 +1,6 @@
 package com.faraday.neverland.repository;
 
+import com.faraday.neverland.domain.Destination;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

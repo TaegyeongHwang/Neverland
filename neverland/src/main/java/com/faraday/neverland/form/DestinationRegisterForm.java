@@ -8,13 +8,17 @@ import javax.validation.constraints.NotEmpty;
 @Getter @Setter
 public class DestinationRegisterForm {
 
-    @NotEmpty(message = "이름은 필수입니다!")
-    private String name;
+    @NotEmpty(message = "제목은 필수입니다!")
+    private String title;
 
-    @NotEmpty(message = "정보는 필수입니다!")
-    private String information;
+    @NotEmpty(message = "내용은 필수입니다!")
+    private String contents;
+
+    @NotEmpty(message = "도시는 필수입니다!")
+    private String city;
 
     private double latitude;
 
     private double longitude;
+
 }

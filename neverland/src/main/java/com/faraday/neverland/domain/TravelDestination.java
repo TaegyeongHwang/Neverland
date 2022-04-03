@@ -21,13 +21,4 @@ public class TravelDestination {
     @JoinColumn(name = "destination_no")
     private Destination destination;
 
-    // 생성 메소드
-    public static TravelDestination createTravelDestination(Destination destination) {
-
-        TravelDestination travelDestination = new TravelDestination();
-        travelDestination.setDestination(destination);
-
-        return travelDestination;
-    }
-
 }

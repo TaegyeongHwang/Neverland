@@ -17,10 +17,13 @@ public class Destination {
     private Long no;
 
     @Column(length = 100, nullable = false)
-    private String name;
+    private String title;
 
     @Column(nullable = false)
-    private String information;
+    private String contents;
+
+    @Column(length = 100, nullable = false)
+    private String city;
 
     @Column(nullable = false)
     private double latitude;

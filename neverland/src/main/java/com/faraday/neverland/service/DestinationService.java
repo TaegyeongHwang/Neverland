@@ -24,8 +24,9 @@ public class DestinationService {
     public Long destinationRegisterProc(DestinationRegisterForm form) {
 
         Destination destination = new Destination();
-        destination.setName(form.getName());
-        destination.setInformation(form.getInformation());
+        destination.setTitle(form.getTitle());
+        destination.setContents(form.getContents());
+        destination.setCity(form.getCity());
         destination.setLatitude(form.getLatitude());
         destination.setLongitude(form.getLongitude());
 
@@ -38,6 +39,12 @@ public class DestinationService {
     public List<Destination> destinationList() {
 
         return destinationRepository.findDestinationList();
+    }
+
+    // 목적지 상세페이지
+    public Destination destinationContents(Long no) {
+
+        return destinationRepository.findDestinationContents(no);
     }
 
 }
