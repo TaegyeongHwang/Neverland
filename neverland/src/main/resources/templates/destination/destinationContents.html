@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+    <div class="form-group">
+        <label th:for="title">제목</label>
+        <p th:text="${destination.title}"></p>
+    </div>
+
+    <div class="form-group">
+        <label th:for="contents">내용</label>
+        <p th:text="${destination.contents}"></p>
+    </div>
+
+    <div class="form-group">
+        <label th:for="writeDate">도시</label>
+        <p th:text="${destination.city}"></p>
+    </div>
+
+    <div id="map" style="width:100%; height:350px;"></div>
+
+    <div th:replace="fragments/footer :: footer"/>
+</div>
+
+</body>
+<script th:inline="javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=db9c93082243a4e5cff6e58ca6f7f632"></script>
+<script>
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng([[${destination.latitude}]], [[${destination.longitude}]]), // 지도의 중심좌표
+            level: 4 // 지도의 확대 레벨
+        };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+    // 지도를 클릭한 위치에 표출할 마커입니다
+    var marker = new kakao.maps.Marker({
+        // 지도 중심좌표에 마커를 생성합니다
+        position: map.getCenter()
+    });
+
+    // 지도에 마커를 표시합니다
+    marker.setMap(map);
+
+</script>
+</html>
