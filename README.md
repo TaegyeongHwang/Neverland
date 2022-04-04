@@ -47,3 +47,4 @@
 ## 1주차
 - 01(금) : Travel, TravelDestination, Destination Entity 구성
 - 02(토) : Travel 등록 및 불러오기
+- 04(월) : 내 회원정보, 여행지 
