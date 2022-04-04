@@ -57,8 +57,8 @@
 
 </script>
 <script>
-    function register(id) {
-        var form = document.createElement("form");
+    function register() {
+        const form = document.createElement("form");
         form.setAttribute("method", "post");
         form.setAttribute("action", "/travel/register/" + '[[${session.id}]]' + "/" + '[[${destination.no}]]');
         document.body.appendChild(form);

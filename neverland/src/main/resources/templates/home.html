@@ -15,9 +15,13 @@
         <div id="account">
             <p class="lead">Member</p>
             <p>
-                <a class="btn btn-lg btn-secondary" href="/account/join" >회원가입</a>
-                <a class="btn btn-lg btn-secondary" href="/account/login" id="login">로그인</a>
-                <a class="btn btn-lg btn-secondary" href="/account/logout" id="logout">로그아웃</a>
+                <a class="btn btn-lg btn-secondary" href="/account/join">회원가입</a>
+                <a class="btn btn-lg btn-secondary login" href="/account/login">로그인</a>
+                <a class="btn btn-lg btn-secondary logout" href="/account/logout">로그아웃</a>
+            </p>
+            <p>
+                <a class="btn btn-lg btn-secondary logout" href="/account/myAccount">회원정보</a>
+                <a class="btn btn-lg btn-secondary logout" href="/account/myTravel">여행지</a>
             </p>
         </div>
         <hr>
@@ -55,11 +59,11 @@
     const loginId = [[${session.id}]];
 
     if (loginId != null) {
-        $("#login").css("display", "none");
-        $("#logout").css("display", "inline-block");
+        $(".login").css("display", "none");
+        $(".logout").css("display", "inline-block");
     } else {
-        $("#login").css("display", "inline-block");
-        $("#logout").css("display", "none");
+        $(".login").css("display", "inline-block");
+        $(".logout").css("display", "none");
     }
 
     const loginLevel = [[${session.level}]];
@@ -71,6 +75,5 @@
     }
 
 </script>
-
 </body>
 </html>

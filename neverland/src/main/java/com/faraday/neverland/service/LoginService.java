@@ -37,7 +37,7 @@ public class LoginService {
             if(account.getPwd().equals(form.getPwd())) {
                 session.setAttribute("id", account.getId());
                 session.setAttribute("level", account.getLevel());
-                view = "redirect:/";
+                view = "/home";
             }
             else {
                 view = "redirect:/account/login";

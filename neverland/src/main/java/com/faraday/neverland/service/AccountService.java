@@ -59,4 +59,12 @@ public class AccountService {
         return account.getId();
     }
 
+    // 회원정보 불러오기
+    public Account myAccountPage() {
+
+        String loginId = (String) session.getAttribute("id");
+
+        return accountRepository.findAccount(loginId);
+    }
+
 }

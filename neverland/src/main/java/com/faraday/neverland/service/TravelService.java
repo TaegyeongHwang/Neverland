@@ -11,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
 
 @Service
 @Transactional(readOnly = true)
@@ -20,6 +23,8 @@ public class TravelService {
     private final TravelRepository travelRepository;
     private final AccountRepository accountRepository;
     private final DestinationRepository destinationRepository;
+
+    private final HttpSession session;
 
     /**
      * 여행지
@@ -37,6 +42,14 @@ public class TravelService {
         travelRepository.persistTravel(travel);
 
         return travel.getNo();
+    }
+
+    // 내 여행지 불러오기
+    public List<Travel> myTravelPage() {
+
+        String loginId = (String) session.getAttribute("id");
+
+        return travelRepository.findMyTravelList(loginId);
     }
 
 }
