@@ -34,4 +34,19 @@ public class Travel {
         account.getTravel().add(this);
     }
 
+    public void addTravelDestination(TravelDestination travelDestination) {
+        travelDestinations.add(travelDestination);
+        travelDestination.setTravel(this);
+    }
+
+    public static Travel createTravel(Account account, TravelDestination travelDestination) {
+        Travel travel = new Travel();
+        travel.setAccount(account);
+        travel.addTravelDestination(travelDestination);
+        travel.setStatus(TravelStatus.BLOCK);
+        travel.setIssueDate(LocalDateTime.now());
+
+        return travel;
+    }
+
 }

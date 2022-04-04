@@ -26,15 +26,28 @@
         <p th:text="${board.getWriteDate()}"></p>
     </div>
 
-    </br>
     <div>
-        <a class="btn btn-primary" th:href="'/board/update?no='+${board.getNo()}">수정하기</a>
-        <a class="btn btn-primary" th:href="'/board/delete?no='+${board.getNo()}">삭제하기</a>
+        <a class="btn btn-primary" th:href="'/board/update?no='+${board.getNo()}" id="btn-update">수정하기</a>
+        <a class="btn btn-primary" th:href="'/board/delete?no='+${board.getNo()}" id="btn-delete">삭제하기</a>
     </div>
-    </br>
+    <br>
 
     <div th:replace="fragments/footer :: footer"/>
 </div>
 
 </body>
+<script th:inline="javascript">
+
+    const loginId = [[${session.id}]];
+    const boardId = [[${board.getAccount().getId()}]];
+
+    if(loginId != boardId) {
+        $("#btn-update").css("display", "none");
+        $("#btn-delete").css("display", "none");
+    } else {
+        $("#btn-update").css("display", "inline-block");
+        $("#btn-delete").css("display", "inline-block");
+    }
+
+</script>
 </html>
