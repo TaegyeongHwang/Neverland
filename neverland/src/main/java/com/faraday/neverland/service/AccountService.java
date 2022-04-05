@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -59,12 +60,24 @@ public class AccountService {
         return account.getId();
     }
 
+    // 전체회원 불러오기
+    public List<Account> accountList() {
+
+        return accountRepository.findAccountList();
+    }
+
     // 회원정보 불러오기
     public Account myAccountPage() {
 
         String loginId = (String) session.getAttribute("id");
 
         return accountRepository.findAccount(loginId);
+    }
+
+    // 회원정보 불러오기 22
+    public Account myAccountPage(String id) {
+
+        return accountRepository.findAccount(id);
     }
 
 }

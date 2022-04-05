@@ -35,7 +35,9 @@
                 <td th:text="${travel.travelDestinations[0].destination.title}"></td>
                 <td th:text="${travel.travelDestinations[0].destination.city}"></td>
                 <td th:text="${travel.issueDate}"></td>
-                <td th:text="${travel.status}" th:class="${travel.status.name() == 'BLOCK'} ? 'block' : (${travel.status.name() == 'PASS'} ? 'pass' : 'fail')"></td>
+                <td th:if="${travel.status.name() == 'BLOCK'}" th:text="${travel.status}" th:class="btn-secondary"></td>
+                <td th:if="${travel.status.name() == 'PASS'}" th:text="${travel.status}" th:class="btn-primary"></td>
+                <td th:if="${travel.status.name() == 'FAIL'}" th:text="${travel.status}" th:class="btn-danger"></td>
             </tr>
             </tbody>
         </table>
