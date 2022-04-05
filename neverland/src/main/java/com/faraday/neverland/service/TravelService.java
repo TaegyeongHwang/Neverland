@@ -52,4 +52,13 @@ public class TravelService {
         return travelRepository.findMyTravelList(loginId);
     }
 
+    /**
+     * Admin
+     */
+    // 여행신청목록 불러오기
+    public List<Travel> travelRegisterList() {
+
+        return travelRepository.findTravelList();
+    }
+
 }

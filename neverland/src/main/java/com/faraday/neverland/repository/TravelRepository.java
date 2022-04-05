@@ -26,4 +26,10 @@ public class TravelRepository {
                 .setParameter("loginId", loginId)
                 .getResultList();
     }
+
+    // 여행신청목록 불러오기
+    public List<Travel> findTravelList() {
+
+        return em.createQuery("select t from Travel t", Travel.class).getResultList();
+    }
 }
