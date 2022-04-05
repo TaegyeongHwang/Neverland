@@ -48,3 +48,4 @@
 - 01(금) : Travel, TravelDestination, Destination Entity 구성
 - 02(토) : Travel 등록 및 불러오기
 - 04(월) : 내 회원정보, 여행지 
+- 05(화) : Admin 여행신청목복 불러오기, 회원정보조회 API
