@@ -18,7 +18,7 @@ public class AccountApiController {
     @GetMapping("/api/account/{id}")
     public APIAccount apiMyAccount(@PathVariable("id") String id) {
 
-        Account account = accountService.myAccountPage(id);
+        Account account = accountService.apiMyAccount(id);
 
         AccountDto accountDto = new AccountDto(account.getId(), account.getName(), account.getEmail());
 
