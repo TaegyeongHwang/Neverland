@@ -1,6 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header"/>
+<style>
+    .none {
+        color: white;
+        background-color: blue;
+    }
+</style>
 <body>
 
 <div class="container">
@@ -15,7 +21,9 @@
                 <th>제목</th>
                 <th>도시</th>
                 <th>신청날짜</th>
+                <th>ㅤㅤㅤㅤ</th>
                 <th>방문상태</th>
+                <th>ㅤㅤㅤㅤ</th>
             </tr>
             </thead>
             <tbody>
@@ -24,10 +32,28 @@
                 <td th:text="${travel.account.id}"></td>
                 <td th:text="${travel.travelDestinations[0].destination.title}"></td>
                 <td th:text="${travel.travelDestinations[0].destination.city}"></td>
-                <td th:text="${travel.issueDate}"></td>
-                <td th:if="${travel.status.name() == 'BLOCK'}" th:text="${travel.status}" th:class="btn-secondary"></td>
-                <td th:if="${travel.status.name() == 'PASS'}" th:text="${travel.status}" th:class="btn-primary"></td>
-                <td th:if="${travel.status.name() == 'FAIL'}" th:text="${travel.status}" th:class="btn-danger"></td>
+                <td th:text="${travel.issueDate.getMonthValue()} + '월 ' + ${travel.issueDate.getDayOfMonth()} + '일'"></td>
+                <td>
+                    <a th:if="${travel.status.name() == 'BLOCK'}" class="btn btn-secondary">BLOCK</a>
+                    <a th:if="${travel.status.name() == 'PASS'}" href="#" th:href="'javascript:status('+${travel.no}+',BLOCK)'" class="btn btn-secondary"
+                       style="color: black; background-color: transparent; border-color: transparent;">BLOCK</a>
+                    <a th:if="${travel.status.name() == 'FAIL'}" href="#" th:href="'javascript:status('+${travel.no}+',BLOCK)'" class="btn btn-secondary"
+                       style="color: black; background-color: transparent; border-color: transparent;">BLOCK</a>
+                </td>
+                <td>
+                    <a th:if="${travel.status.name() == 'BLOCK'}" href="#" th:href="'javascript:status('+${travel.no}+',PASS)'" class="btn btn-primary"
+                       style="color: black; background-color: transparent; border-color: transparent;">PASS</a>
+                    <a th:if="${travel.status.name() == 'PASS'}" class="btn btn-primary">PASS</a>
+                    <a th:if="${travel.status.name() == 'FAIL'}" href="#" th:href="'javascript:status('+${travel.no}+',PASS)'" class="btn btn-primary"
+                       style="color: black; background-color: transparent; border-color: transparent;">PASS</a>
+                </td>
+                <td>
+                    <a th:if="${travel.status.name() == 'BLOCK'}" href="#" th:href="'javascript:status('+${travel.no}+',FAIL)'" class="btn btn-danger"
+                       style="color: black; background-color: transparent; border-color: transparent;">FAIL</a>
+                    <a th:if="${travel.status.name() == 'PASS'}" href="#" th:href="'javascript:status('+${travel.no}+',FAIL)'" class="btn btn-danger"
+                       style="color: black; background-color: transparent; border-color: transparent;">FAIL</a>
+                    <a th:if="${travel.status.name() == 'FAIL'}" class="btn btn-danger">FAIL</a>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -37,4 +63,19 @@
 </div>
 
 </body>
+<script th:inline="javascript">
+
+    const BLOCK = "BLOCK";
+    const PASS = "PASS";
+    const FAIL = "FAIL";
+
+    function status(travelNo, travelStatus) {
+        const form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/admin/travelStatus/" + travelNo + "/" + travelStatus);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+</script>
 </html>

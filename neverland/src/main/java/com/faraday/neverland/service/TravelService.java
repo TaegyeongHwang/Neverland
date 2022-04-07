@@ -1,9 +1,6 @@
 package com.faraday.neverland.service;
 
-import com.faraday.neverland.domain.Account;
-import com.faraday.neverland.domain.Destination;
-import com.faraday.neverland.domain.Travel;
-import com.faraday.neverland.domain.TravelDestination;
+import com.faraday.neverland.domain.*;
 import com.faraday.neverland.repository.AccountRepository;
 import com.faraday.neverland.repository.DestinationRepository;
 import com.faraday.neverland.repository.TravelRepository;
@@ -59,6 +56,21 @@ public class TravelService {
     public List<Travel> travelRegisterList() {
 
         return travelRepository.findTravelList();
+    }
+
+    // 방문상태 변경
+    @Transactional
+    public void travelStatusChangeProc(Long no, String status) {
+
+        Travel travel = travelRepository.findTravel(no);
+
+        if (status.equals("BLOCK")) {
+            travel.setStatus(TravelStatus.BLOCK);
+        } else if (status.equals("PASS")) {
+            travel.setStatus(TravelStatus.PASS);
+        } else {
+            travel.setStatus(TravelStatus.FAIL);
+        }
     }
 
 }

@@ -19,6 +19,12 @@ public class TravelRepository {
         em.persist(travel);
     }
 
+    // 여행지 불러오기
+    public Travel findTravel(Long no) {
+
+        return em.find(Travel.class, no);
+    }
+
     // 내 여행지 불러오기
     public List<Travel> findMyTravelList(String loginId) {
 

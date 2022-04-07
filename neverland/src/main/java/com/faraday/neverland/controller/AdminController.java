@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -22,10 +23,6 @@ public class AdminController {
 
     private final DestinationService destinationService;
     private final TravelService travelService;
-
-    /**
-     * Admin
-     */
 
     /**
      * 목적지
@@ -55,6 +52,9 @@ public class AdminController {
         return "redirect:/";
     }
 
+    /**
+     * 여행신청목록
+     */
     // 여행신청목록 페이지
     @GetMapping("/admin/travelRegisterList")
     public String travelRegisterList(Model model) {
@@ -66,4 +66,15 @@ public class AdminController {
 
         return "/admin/travelRegisterList";
     }
+
+    // 방문상태 변경
+    @PostMapping("/admin/travelStatus/{travelNo}/{travelStatus}")
+    public String travelStatusChangeProc(@PathVariable("travelNo") Long travelNo, @PathVariable("travelStatus") String travelStatus) {
+        log.info("travelStatusChangeProc");
+
+        travelService.travelStatusChangeProc(travelNo, travelStatus);
+
+        return "redirect:/admin/travelRegisterList";
+    }
+
 }
