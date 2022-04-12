@@ -22,10 +22,11 @@
                 <td th:text="${travel.no}"></td>
                 <td th:text="${travel.travelDestinations[0].destination.title}"></td>
                 <td th:text="${travel.travelDestinations[0].destination.city}"></td>
-                <td th:text="${travel.issueDate}"></td>
-                <td th:if="${travel.status.name() == 'BLOCK'}" th:text="${travel.status}" th:class="btn-secondary"></td>
-                <td th:if="${travel.status.name() == 'PASS'}" th:text="${travel.status}" th:class="btn-primary"></td>
-                <td th:if="${travel.status.name() == 'FAIL'}" th:text="${travel.status}" th:class="btn-danger"></td>
+                <td th:text="${travel.issueDate.getMonthValue()} + '월 ' + ${travel.issueDate.getDayOfMonth()} + '일'"></td>
+                <td><a th:if="${travel.status.name() == 'BLOCK'}" class="btn btn-secondary">BLOCK</a>
+                    <a th:if="${travel.status.name() == 'PASS'}" class="btn btn-primary">PASS</a>
+                    <a th:if="${travel.status.name() == 'FAIL'}" class="btn btn-danger">FAIL</a>
+                </td>
             </tr>
             </tbody>
         </table>
