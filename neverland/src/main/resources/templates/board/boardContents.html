@@ -7,23 +7,27 @@
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
     <div class="form-group">
-        <label th:for="id">작성자</label>
-        <p th:text="${board.getAccount().getId()}"></p>
-    </div>
-
-    <div class="form-group">
         <label th:for="title">제목</label>
         <p th:text="${board.getTitle()}"></p>
     </div>
 
     <div class="form-group">
-        <label th:for="contents">내용</label>
-        <p th:text="${board.getContents()}"></p>
+        <label th:for="id">작성자</label>
+        <p th:text="${board.getAccount().getId()}"></p>
     </div>
 
     <div class="form-group">
-        <label th:for="writeDate">작성시간</label>
-        <p th:text="${board.getWriteDate()}"></p>
+        <label th:for="writeDate">작성날짜</label>
+        <p th:text="${board.getWriteDate().getMonthValue()} + '월 ' +
+                    ${board.getWriteDate().getDayOfMonth()} + '일 ' +
+                    ${board.getWriteDate().getHour()} + '시 '+
+                    ${board.getWriteDate().getMinute()} + '분 '">
+        </p>
+    </div>
+
+    <div class="form-group">
+        <label th:for="contents">내용</label>
+        <p th:text="${board.getContents()}"></p>
     </div>
 
     <div>

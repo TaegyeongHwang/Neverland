@@ -13,7 +13,7 @@
                 <th>번호</th>
                 <th>작성자</th>
                 <th>제목</th>
-                <th>작성시간</th>
+                <th>작성날짜</th>
             </tr>
             </thead>
             <tbody>
@@ -21,7 +21,11 @@
                 <td th:text="${board.getNo()}"></td>
                 <td th:text="${board.getAccount().getId()}"></td>
                 <td><a th:text="${board.getTitle()}" th:href="'/board/contents?no='+${board.getNo()}"></a></td>
-                <td th:text="${board.getWriteDate()}"></td>
+                <td th:text="${board.getWriteDate().getMonthValue()} + '월 ' +
+                             ${board.getWriteDate().getDayOfMonth()} + '일 ' +
+                             ${board.getWriteDate().getHour()} + '시 '+
+                             ${board.getWriteDate().getMinute()} + '분'">
+                </td>
             </tr>
             </tbody>
         </table>
