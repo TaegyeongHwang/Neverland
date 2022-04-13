@@ -73,10 +73,4 @@ public class TravelService {
         }
     }
 
-    // API Travel 불러오기
-    public Travel apiMyTravel(Long no) {
-
-        return travelRepository.findTravel(no);
-    }
-
 }

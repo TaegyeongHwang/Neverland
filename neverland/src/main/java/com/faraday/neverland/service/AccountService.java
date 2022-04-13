@@ -74,10 +74,4 @@ public class AccountService {
         return accountRepository.findAccount(loginId);
     }
 
-    // API 회원정보 불러오기
-    public Account apiMyAccount(String id) {
-
-        return accountRepository.findAccount(id);
-    }
-
 }
