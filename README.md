@@ -42,9 +42,11 @@
 - 31(수) : course 삭제 및 account 메소드명 정리
 
 # 4월
-## 1주차
+## 01 ~ 10일
 - 01(금) : Travel, TravelDestination, Destination Entity 구성
 - 02(토) : Travel 등록 및 불러오기
 - 04(월) : 내 회원정보, 여행지 
 - 05(화) : Admin 여행신청목복 불러오기, 회원정보조회 API
 - 07(목) : Admin 방문상태 변경
+
+## 11일 ~ 20일
