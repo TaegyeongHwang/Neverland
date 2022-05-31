@@ -137,3 +137,8 @@ fabric.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij
 .DS_Store
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
